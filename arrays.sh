@@ -5,3 +5,9 @@ echo ${myarr[1]}
 for i in {0..7}; do
     echo "Iteration ${myarr[i]}"
 done   
+
+myarr+=(10 12 23)
+
+echo ${myarr[*]} #print all element
+
+echo ${#myarr[*]} #print size
