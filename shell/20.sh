@@ -18,13 +18,13 @@ case $day in
         echo "Stay productive, the weekend is near!"
         ;;
     Friday)
-        echo "Finish strong and enjoy your evening!"
+        echo "Finish strong and enjoy  evening!"
         ;;
     Saturday)
-        echo "Relax and enjoy your weekend!"
+        echo "enjoy weekend with tea and code!"
         ;;
     Sunday)
-        echo "Rest well and prepare for the new week!"
+        echo "work on startup"
         ;;
     *)
         echo "Have a great day!"
