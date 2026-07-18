@@ -7,3 +7,5 @@ else
     echo "12"
 fi        
 
+# ternary operator
+[[ 12 -gt 10 ]] && echo "hello" || echo "hello how" 
