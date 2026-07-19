@@ -1,0 +1,3069 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{lastpage}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, decorations.pathmorphing}
+\usepackage{eso-pic}
+\usepackage{transparent}
+
+
+% Page geometry
+\geometry{
+    a4paper,
+    margin=0.5in,
+    top=0.5in,
+    bottom=0.5in,
+    headheight=14pt,
+    headsep=8pt,
+    footskip=16pt
+}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{DSA Assignment (C++)}
+\fancyhead[R]{19/07/2026}
+\fancyfoot[C]{\thepage/\pageref{LastPage}}
+
+% Compact section titles
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\subsection}{0pt}{2pt}{0pt}
+
+% Code listing style
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\definecolor{codeframe}{rgb}{0.8,0.8,0.8}
+\definecolor{stringcolor}{rgb}{0.58,0,0.82}
+\definecolor{commentcolor}{rgb}{0,0.5,0}
+\definecolor{keywordcolor}{rgb}{0,0,0.7}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\normalsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    commentstyle=\color{commentcolor},
+    extendedchars=true,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{codeframe},
+    keepspaces=true,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    numbers=left,
+    numbersep=3pt,
+    numberstyle=\tiny\color{gray},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stepnumber=1,
+    stringstyle=\color{stringcolor},
+    tabsize=2,
+    xleftmargin=4pt,
+    framexleftmargin=4pt
+}
+
+\lstdefinestyle{outputstyle}{
+    basicstyle=\ttfamily\normalsize,
+    backgroundcolor=\color{black!5},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{gray!50},
+    breaklines=true,
+    numbers=none,
+    xleftmargin=4pt,
+    framexleftmargin=4pt
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\setlength{\columnsep}{10pt}
+\setlength{\columnseprule}{0.4pt}
+
+% Fix first page header/footer
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{DSA Assignment (C++)}
+    \fancyhead[R]{19/07/2026}
+    \fancyfoot[C]{\thepage/\pageref{LastPage}}
+}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\thispagestyle{empty}
+
+% ============================================================
+% FRONT PAGE
+% ============================================================
+\AddToShipoutPictureBG*{%
+    \begin{tikzpicture}[remember picture, overlay]
+        % Top decorative bar
+        \fill[black!85] (current page.north west) rectangle ([yshift=-2.5cm]current page.north east);
+        % Bottom decorative bar
+        \fill[black!85] (current page.south west) rectangle ([yshift=2.5cm]current page.south east);
+        % Left accent stripe
+        \fill[black!20] ([xshift=0cm]current page.west) rectangle ([xshift=0.3cm]current page.south west);
+        % Right accent stripe
+        \fill[black!20] ([xshift=-0.3cm]current page.east) rectangle (current page.south east);
+    \end{tikzpicture}%
+}
+
+\vspace*{0.8cm}
+
+\begin{center}
+% Logo
+\includegraphics[width=3.5cm]{logo.png}
+\vspace{0.4cm}
+
+% College Name
+{\fontfamily{cmr}\fontsize{22}{26}\selectfont \textbf{\textcolor{black!85}{GOUR MAHAVIDYALAYA}}}
+\vspace{0.1cm}
+
+{\fontfamily{cmr}\fontsize{11}{13}\selectfont \textcolor{black!50}{(Affiliated to Vidyasagar University)}}
+\vspace{0.6cm}
+
+% Decorative line
+{\color{black!30}\rule{0.4\textwidth}{0.5pt}}
+\vspace{0.6cm}
+
+% Assignment Title
+{\fontfamily{cmr}\fontsize{22}{26}\selectfont \textbf{\textcolor{black!85}{Data Structures and Algorithms Lab Assignment}}}
+\vspace{0.15cm}
+
+{\fontfamily{cmr}\fontsize{13}{16}\selectfont \textbf{\textcolor{black!60}{Using C++ Programming Language}}}
+\vspace{0.6cm}
+
+% Decorative line
+{\color{black!30}\rule{0.6\textwidth}{0.5pt}}
+\vspace{0.6cm}
+
+% Student Details
+\colorbox{black!5}{%
+\begin{minipage}{0.65\textwidth}
+\centering
+\vspace{0.3cm}
+{\fontfamily{cmr}
+\begin{tabular}{rl}
+\large \textbf{Name}          & \large : \textbf{KISHAN RANA GHOSH} \\[8pt]
+\large \textbf{Roll No.}      & \large : \textbf{121-1115-2372-24} \\[8pt]
+\large \textbf{Semester}      & \large : \textbf{4th Semester} \\[8pt]
+\large \textbf{Stream}        & \large : \textbf{B.Sc. Computer Science} \\[8pt]
+\large \textbf{Date}          & \large : \textbf{19/07/2026} \\
+\end{tabular}
+}
+\vspace{0.3cm}
+\end{minipage}%
+}
+
+\vspace{0.6cm}
+
+% Decorative line
+{\color{black!30}\rule{0.4\textwidth}{0.5pt}}
+\vspace{0.4cm}
+
+{\fontfamily{cmr}\large \textit{Submitted to the Department of Computer Science}}
+\vspace{0.2cm}
+
+{\fontfamily{cmr}\small \textcolor{black!40}{--- \textbullet{} \textbullet{} \textbullet{} ---}}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\vspace*{1cm}
+\begin{center}
+{\fontsize{26}{32}\selectfont \textbf{\textcolor{black!80}{Index}}}
+\vspace{0.2cm}
+{\color{black!30}\hrule height 1.5pt width 0.6\textwidth}
+\vspace{0.6cm}
+
+{\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\centering\arraybackslash}m{1cm} >{\raggedright\arraybackslash}m{8cm} >{\centering\arraybackslash}m{2cm}}
+\rowcolor{black!85}
+{\color{white}\textbf{No.}} & {\color{white}\textbf{Program Name}} & {\color{white}\textbf{Page}} \\
+\rowcolor{white}
+1  & Binary Tree Implementation & 1 -- 6 \\
+\rowcolor{black!5}
+2  & Binary Search Tree Implementation & 7 -- 10 \\
+\rowcolor{white}
+3  & Linear Search & 11 -- 12 \\
+\rowcolor{black!5}
+4  & Binary Search & 13 -- 14 \\
+\rowcolor{white}
+5  & Bubble Sort & 15 -- 16 \\
+\rowcolor{black!5}
+6  & Insertion Sort & 17 -- 18 \\
+\rowcolor{white}
+7  & Selection Sort & 19 -- 20 \\
+\rowcolor{black!5}
+8  & Quick Sort (Descending) & 21 -- 22 \\
+\rowcolor{white}
+9  & Merge Two Sorted Arrays & 23 -- 24 \\
+\rowcolor{black!5}
+10 & Merge Sort & 25 -- 26 \\
+\rowcolor{white}
+11 & Height-Balanced Binary Tree Check & 27 -- 28 \\
+\rowcolor{black!5}
+12 & Priority Queue using Linked List & 29 -- 30 \\
+\rowcolor{white}
+13 & Queue using Array & 31 -- 32 \\
+\rowcolor{black!5}
+14 & Deque using Linked List & 33 -- 34 \\
+\rowcolor{white}
+15 & Factorial using Recursion \& Iteration & 35 -- 36 \\
+\rowcolor{black!5}
+16 & Infix to Postfix Conversion & 37 -- 38 \\
+\rowcolor{white}
+17 & Evaluate Postfix Expression & 39 \\
+\rowcolor{black!5}
+18 & Prefix to Infix Conversion & 40 \\
+\rowcolor{white}
+19 & Evaluate Prefix Expression & 41 \\
+\rowcolor{black!5}
+20 & Singly Linked List & 42 -- 43 \\
+\rowcolor{white}
+21 & Doubly Linked List & 44 -- 46 \\
+\rowcolor{black!5}
+22 & Circular Linked List & 47 -- 49 \\
+\rowcolor{white}
+23 & Reverse a Linked List & 50 -- 51 \\
+\rowcolor{black!5}
+24 & Stack using Linked List & 52 -- 53 \\
+\rowcolor{white}
+25 & Stack using Array & 54 -- 55 \\
+\rowcolor{black!5}
+26 & Deque using Linked List & 56 -- 58 \\
+\rowcolor{white}
+27 & Polynomial Addition using Linked List & 59 -- 60 \\
+\rowcolor{black!5}
+28 & Fibonacci Series using Recursion & 61 -- 62 \\
+\end{tabular}}
+\end{center}
+\vfill
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ============================================================
+% PROGRAM 1: Binary Tree
+% ============================================================
+\section*{Program 1: Binary Tree Implementation}
+\addcontentsline{toc}{section}{Program 1: Binary Tree Implementation}
+
+\subsection*{Problem Statement}
+Write a menu-based C++ program to implement a Binary Tree. The program should support the following operations: Insert, Delete, Search, Height, In-order Traversal, Pre-order Traversal, Post-order Traversal, Level Order Traversal, and Exit.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data, left and right pointers.
+    \item Create a BinaryTree class that uses level-order insertion (complete binary tree).
+    \item \textbf{Insert}: Use a queue to find the first empty position and insert the new node.
+    \item \textbf{Delete}: Find the target node and the deepest node. Replace target's data with deepest node's data, then delete the deepest node.
+    \item \textbf{Search}: Level-order traversal to find the key.
+    \item \textbf{Height}: Recursively compute max(left subtree height, right subtree height) + 1.
+    \item \textbf{Traversals}: Implement recursive in-order, pre-order, post-order, and iterative level-order using a queue.
+    \item Display a menu and handle user choice using a switch statement.
+\end{enumerate}
+
+\subsection*{Source Code (01.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <queue>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+
+    Node(int val)
+    {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+class BinaryTree
+{
+private:
+    Node *root;
+
+    int height(Node *node)
+    {
+        if (node == NULL) return -1;
+        return 1 + max(height(node->left), height(node->right));
+    }
+
+    void inorder(Node *node)
+    {
+        if (node)
+        {
+            inorder(node->left);
+            cout << node->data << " ";
+            inorder(node->right);
+        }
+    }
+
+    void preorder(Node *node)
+    {
+        if (node)
+        {
+            cout << node->data << " ";
+            preorder(node->left);
+            preorder(node->right);
+        }
+    }
+
+    void postorder(Node *node)
+    {
+        if (node)
+        {
+            postorder(node->left);
+            postorder(node->right);
+            cout << node->data << " ";
+        }
+    }
+
+public:
+    BinaryTree() { root = NULL; }
+
+    void insert(int value)
+    {
+        Node *newNode = new Node(value);
+        if (root == NULL) { root = newNode; return; }
+
+        queue<Node *> q;
+        q.push(root);
+
+        while (!q.empty())
+        {
+            Node *temp = q.front(); q.pop();
+            if (temp->left == NULL)
+            { temp->left = newNode; return; }
+            else q.push(temp->left);
+
+            if (temp->right == NULL)
+            { temp->right = newNode; return; }
+            else q.push(temp->right);
+        }
+    }
+
+    bool search(int key)
+    {
+        if (root == NULL) return false;
+        queue<Node *> q; q.push(root);
+        while (!q.empty())
+        {
+            Node *temp = q.front(); q.pop();
+            if (temp->data == key) return true;
+            if (temp->left) q.push(temp->left);
+            if (temp->right) q.push(temp->right);
+        }
+        return false;
+    }
+
+    void deleteNode(int key)
+    {
+        if (root == NULL) return;
+        if (root->left == NULL && root->right == NULL)
+        {
+            if (root->data == key) { delete root; root = NULL; }
+            return;
+        }
+
+        queue<Node *> q; q.push(root);
+        Node *target = NULL, *temp;
+
+        while (!q.empty())
+        {
+            temp = q.front(); q.pop();
+            if (temp->data == key) target = temp;
+            if (temp->left) q.push(temp->left);
+            if (temp->right) q.push(temp->right);
+        }
+
+        if (target != NULL)
+        {
+            int deepestValue = temp->data;
+            queue<Node *> q2; q2.push(root);
+            while (!q2.empty())
+            {
+                Node *curr = q2.front(); q2.pop();
+                if (curr->left)
+                {
+                    if (curr->left == temp)
+                    { delete curr->left; curr->left = NULL; break; }
+                    q2.push(curr->left);
+                }
+                if (curr->right)
+                {
+                    if (curr->right == temp)
+                    { delete curr->right; curr->right = NULL; break; }
+                    q2.push(curr->right);
+                }
+            }
+            target->data = deepestValue;
+        }
+    }
+
+    void displayHeight()
+    { cout << "Height = " << height(root) << endl; }
+
+    void inorderTraversal()
+    { cout << "Inorder: "; inorder(root); cout << endl; }
+
+    void preorderTraversal()
+    { cout << "Preorder: "; preorder(root); cout << endl; }
+
+    void postorderTraversal()
+    { cout << "Postorder: "; postorder(root); cout << endl; }
+
+    void levelOrderTraversal()
+    {
+        if (root == NULL) { cout << "Tree is empty\n"; return; }
+        queue<Node *> q; q.push(root);
+        cout << "Level Order: ";
+        while (!q.empty())
+        {
+            Node *temp = q.front(); q.pop();
+            cout << temp->data << " ";
+            if (temp->left) q.push(temp->left);
+            if (temp->right) q.push(temp->right);
+        }
+        cout << endl;
+    }
+};
+
+int main()
+{
+    BinaryTree tree;
+    int choice, value;
+    do
+    {
+        cout << "\n===== MENU =====\n";
+        cout << "1. Insert\n2. Delete\n3. Search\n4. Height\n";
+        cout << "5. Inorder Traversal\n6. Preorder Traversal\n";
+        cout << "7. Postorder Traversal\n8. Level Order Traversal\n";
+        cout << "9. Exit\nEnter choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1: cout << "Enter value: "; cin >> value; tree.insert(value); break;
+        case 2: cout << "Enter value to delete: "; cin >> value; tree.deleteNode(value); break;
+        case 3: cout << "Enter value to search: "; cin >> value;
+            if (tree.search(value)) cout << "Found\n"; else cout << "Not Found\n"; break;
+        case 4: tree.displayHeight(); break;
+        case 5: tree.inorderTraversal(); break;
+        case 6: tree.preorderTraversal(); break;
+        case 7: tree.postorderTraversal(); break;
+        case 8: tree.levelOrderTraversal(); break;
+        case 9: cout << "Exiting...\n"; break;
+        default: cout << "Invalid choice\n";
+        }
+    } while (choice != 9);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 01.cpp -o 01
+krg@krgs-Mac shell % ./01
+
+===== MENU =====
+1. Insert
+2. Delete
+3. Search
+4. Height
+5. Inorder Traversal
+6. Preorder Traversal
+7. Postorder Traversal
+8. Level Order Traversal
+9. Exit
+Enter choice: 1
+Enter value: 10
+
+===== MENU =====
+Enter choice: 1
+Enter value: 20
+
+===== MENU =====
+Enter choice: 1
+Enter value: 30
+
+===== MENU =====
+Enter choice: 5
+Inorder: 20 10 30 
+
+===== MENU =====
+Enter choice: 8
+Level Order: 10 20 30 
+
+===== MENU =====
+Enter choice: 4
+Height = 1
+
+===== MENU =====
+Enter choice: 9
+Exiting...
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 2: Binary Search Tree
+% ============================================================
+\section*{Program 2: Binary Search Tree Implementation}
+\addcontentsline{toc}{section}{Program 2: Binary Search Tree Implementation}
+
+\subsection*{Problem Statement}
+Write a menu-based C++ program to implement a Binary Search Tree. The program should support: Insert, Delete, Search, Height, In-order Traversal, Pre-order Traversal, Post-order Traversal, Number of Nodes, Smallest Node, and Exit.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data, left and right pointers.
+    \item \textbf{Insert}: Recursively traverse — if value $<$ node data, go left; if $>$ go right. Insert when NULL is reached.
+    \item \textbf{Delete}: Three cases — (1) Leaf node: delete directly. (2) One child: replace with child. (3) Two children: find inorder successor (smallest in right subtree), replace data, delete successor.
+    \item \textbf{Search}: Recursively compare with node data; go left if smaller, right if larger.
+    \item \textbf{Height}: Recursively compute max(left, right) + 1.
+    \item \textbf{Smallest Node}: Find the leftmost node.
+    \item \textbf{Node Count}: Recursively count nodes in left + right + 1.
+\end{enumerate}
+
+\subsection*{Source Code (02.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+    Node(int val) { data = val; left = right = NULL; }
+};
+
+class BST
+{
+private:
+    Node *root;
+
+    Node *insert(Node *node, int val)
+    {
+        if (node == NULL) return new Node(val);
+        if (val < node->data) node->left = insert(node->left, val);
+        else if (val > node->data) node->right = insert(node->right, val);
+        return node;
+    }
+
+    Node *findMin(Node *node)
+    {
+        while (node && node->left != NULL) node = node->left;
+        return node;
+    }
+
+    Node *deleteNode(Node *node, int key)
+    {
+        if (node == NULL) return NULL;
+        if (key < node->data) node->left = deleteNode(node->left, key);
+        else if (key > node->data) node->right = deleteNode(node->right, key);
+        else
+        {
+            if (node->left == NULL && node->right == NULL)
+            { delete node; return NULL; }
+            if (node->left == NULL)
+            { Node *temp = node->right; delete node; return temp; }
+            if (node->right == NULL)
+            { Node *temp = node->left; delete node; return temp; }
+            Node *temp = findMin(node->right);
+            node->data = temp->data;
+            node->right = deleteNode(node->right, temp->data);
+        }
+        return node;
+    }
+
+    bool search(Node *node, int key)
+    {
+        if (node == NULL) return false;
+        if (node->data == key) return true;
+        if (key < node->data) return search(node->left, key);
+        return search(node->right, key);
+    }
+
+    int height(Node *node)
+    {
+        if (node == NULL) return -1;
+        return 1 + max(height(node->left), height(node->right));
+    }
+
+    void inorder(Node *node)
+    { if (node) { inorder(node->left); cout << node->data << " "; inorder(node->right); } }
+
+    void preorder(Node *node)
+    { if (node) { cout << node->data << " "; preorder(node->left); preorder(node->right); } }
+
+    void postorder(Node *node)
+    { if (node) { postorder(node->left); postorder(node->right); cout << node->data << " "; } }
+
+    int countNodes(Node *node)
+    { if (node == NULL) return 0; return 1 + countNodes(node->left) + countNodes(node->right); }
+
+public:
+    BST() { root = NULL; }
+    void insert(int val) { root = insert(root, val); }
+    void deleteValue(int key) { root = deleteNode(root, key); }
+    void searchValue(int key)
+    { if (search(root, key)) cout << "Node Found\n"; else cout << "Node Not Found\n"; }
+    void printHeight() { cout << "Height = " << height(root) << endl; }
+    void inorderTraversal() { cout << "Inorder: "; inorder(root); cout << endl; }
+    void preorderTraversal() { cout << "Preorder: "; preorder(root); cout << endl; }
+    void postorderTraversal() { cout << "Postorder: "; postorder(root); cout << endl; }
+    void printNodeCount() { cout << "Total Nodes = " << countNodes(root) << endl; }
+    void printSmallestNode()
+    {
+        if (root == NULL) { cout << "Tree is empty\n"; return; }
+        Node *temp = findMin(root);
+        cout << "Smallest Node = " << temp->data << endl;
+    }
+};
+
+int main()
+{
+    BST tree; int choice, value;
+    do {
+        cout << "\n===== BST MENU =====\n";
+        cout << "1. Insert\n2. Delete\n3. Search\n4. Height\n";
+        cout << "5. Inorder Traversal\n6. Preorder Traversal\n";
+        cout << "7. Postorder Traversal\n8. Number of Nodes\n";
+        cout << "9. Smallest Node\n10. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1: cout << "Enter value: "; cin >> value; tree.insert(value); break;
+        case 2: cout << "Enter value to delete: "; cin >> value; tree.deleteValue(value); break;
+        case 3: cout << "Enter value to search: "; cin >> value; tree.searchValue(value); break;
+        case 4: tree.printHeight(); break;
+        case 5: tree.inorderTraversal(); break;
+        case 6: tree.preorderTraversal(); break;
+        case 7: tree.postorderTraversal(); break;
+        case 8: tree.printNodeCount(); break;
+        case 9: tree.printSmallestNode(); break;
+        case 10: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 10);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 02.cpp -o 02
+krg@krgs-Mac shell % ./02
+
+===== BST MENU =====
+1. Insert
+2. Delete
+3. Search
+4. Height
+5. Inorder Traversal
+6. Preorder Traversal
+7. Postorder Traversal
+8. Number of Nodes
+9. Smallest Node
+10. Exit
+Enter choice: 1
+Enter value: 50
+
+===== BST MENU =====
+Enter choice: 1
+Enter value: 30
+
+===== BST MENU =====
+Enter choice: 1
+Enter value: 70
+
+===== BST MENU =====
+Enter choice: 5
+Inorder: 30 50 70 
+
+===== BST MENU =====
+Enter choice: 8
+Total Nodes = 3
+
+===== BST MENU =====
+Enter choice: 9
+Smallest Node = 30
+
+===== BST MENU =====
+Enter choice: 4
+Height = 1
+
+===== BST MENU =====
+Enter choice: 10
+Exiting...
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 3: Linear Search
+% ============================================================
+\section*{Program 3: Linear Search}
+\addcontentsline{toc}{section}{Program 3: Linear Search}
+
+\subsection*{Problem Statement}
+Write a program to search a number from a list of given numbers using linear search. Discuss the complexity of linear search.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Start from the first element of the array.
+    \item Compare each element with the key.
+    \item If a match is found, return the index.
+    \item If the end of the array is reached without a match, return -1.
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n) — In the worst case, all n elements are compared.
+    \item \textbf{Best Case}: O(1) — The element is found at the first position.
+    \item \textbf{Worst Case}: O(n) — The element is at the last position or not present.
+    \item \textbf{Space Complexity}: O(1) — No extra space is used.
+\end{itemize}
+
+\subsection*{Source Code (03.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int linearSearch(const vector<int> &arr, int key)
+{
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+
+int main()
+{
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int result = linearSearch(arr, key);
+    if (result != -1)
+        cout << "Element found at position " << result + 1 << endl;
+    else
+        cout << "Element not found." << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 03.cpp -o 03
+krg@krgs-Mac shell % ./03
+Enter number of elements: 5
+Enter elements:
+10 25 30 45 50
+Enter element to search: 30
+Element found at position 3
+\end{lstlisting}
+
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./03
+Enter number of elements: 4
+Enter elements:
+11 22 33 44
+Enter element to search: 55
+Element not found.
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 4: Binary Search
+% ============================================================
+\section*{Program 4: Binary Search}
+\addcontentsline{toc}{section}{Program 4: Binary Search}
+
+\subsection*{Problem Statement}
+Write a program to search a number from a list of given numbers using Binary search. Discuss the complexity of Binary search.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item The array must be sorted in ascending order.
+    \item Set low = 0, high = n-1.
+    \item While low $\leq$ high: Compute mid = low + (high - low) / 2.
+    \item If arr[mid] == key, return mid.
+    \item If arr[mid] < key, search the right half (low = mid + 1).
+    \item Otherwise, search the left half (high = mid - 1).
+    \item If the loop ends, return -1 (not found).
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(log n) — The search space is halved in each step.
+    \item \textbf{Best Case}: O(1) — The element is at the middle.
+    \item \textbf{Worst Case}: O(log n) — Element is at an edge or not present.
+    \item \textbf{Space Complexity}: O(1) for iterative implementation.
+\end{itemize}
+
+\subsection*{Source Code (04.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int binarySearch(const vector<int> &arr, int key)
+{
+    int low = 0;
+    int high = arr.size() - 1;
+
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == key) return mid;
+        if (arr[mid] < key) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter " << n << " sorted elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int result = binarySearch(arr, key);
+    if (result != -1)
+        cout << "Element found at position " << result + 1 << endl;
+    else
+        cout << "Element not found." << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 04.cpp -o 04
+krg@krgs-Mac shell % ./04
+Enter number of elements: 6
+Enter 6 sorted elements:
+10 20 30 40 50 60
+Enter element to search: 40
+Element found at position 4
+\end{lstlisting}
+
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./04
+Enter number of elements: 5
+Enter 5 sorted elements:
+5 15 25 35 45
+Enter element to search: 50
+Element not found.
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 5: Bubble Sort
+% ============================================================
+\section*{Program 5: Bubble Sort}
+\addcontentsline{toc}{section}{Program 5: Bubble Sort}
+
+\subsection*{Problem Statement}
+Write a program to sort a list of elements using Bubble Sort. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item For i = 0 to n-2:
+    \item   For j = 0 to n-i-2:
+    \item     If arr[j] > arr[j+1], swap them.
+    \item   If no swaps occurred in a pass, the array is sorted (optimization).
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n$^2$) in worst and average cases.
+    \item \textbf{Best Case}: O(n) — Array is already sorted (with optimization flag).
+    \item \textbf{Space Complexity}: O(1) — In-place sorting.
+\end{itemize}
+
+\subsection*{Source Code (05.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void bubbleSort(vector<int> &arr)
+{
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    bubbleSort(arr);
+
+    cout << "Sorted Array: ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 05.cpp -o 05
+krg@krgs-Mac shell % ./05
+Enter number of elements: 5
+Enter elements:
+64 34 25 12 22
+Sorted Array: 12 22 25 34 64
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 6: Insertion Sort
+% ============================================================
+\section*{Program 6: Insertion Sort}
+\addcontentsline{toc}{section}{Program 6: Insertion Sort}
+
+\subsection*{Problem Statement}
+Write a program to sort a list of numbers using Insertion sort. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item For i = 1 to n-1:
+    \item   Store arr[i] as key.
+    \item   Set j = i-1.
+    \item   While j $\geq$ 0 and arr[j] $>$ key: shift arr[j] to arr[j+1], decrement j.
+    \item   Place key at arr[j+1].
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n$^2$) in worst and average cases.
+    \item \textbf{Best Case}: O(n) — Array is already sorted.
+    \item \textbf{Space Complexity}: O(1) — In-place sorting.
+    \item \textbf{Stable}: Yes, relative order of equal elements is preserved.
+\end{itemize}
+
+\subsection*{Source Code (06.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void insertionSort(vector<int> &arr)
+{
+    int n = arr.size();
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    insertionSort(arr);
+
+    cout << "Sorted Array: ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 06.cpp -o 06
+krg@krgs-Mac shell % ./06
+Enter number of elements: 6
+Enter elements:
+12 11 13 5 6 7
+Sorted Array: 5 6 7 11 12 13
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 7: Selection Sort
+% ============================================================
+\section*{Program 7: Selection Sort}
+\addcontentsline{toc}{section}{Program 7: Selection Sort}
+
+\subsection*{Problem Statement}
+Write a program to sort a list of elements using Selection Sort. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item For i = 0 to n-2:
+    \item   Find the index of the minimum element in arr[i..n-1].
+    \item   Swap arr[i] with arr[minIndex].
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n$^2$) in all cases (best, average, worst).
+    \item \textbf{Space Complexity}: O(1) — In-place sorting.
+    \item \textbf{Not Stable}: Does not preserve the relative order of equal elements.
+\end{itemize}
+
+\subsection*{Source Code (07.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void selectionSort(vector<int> &arr)
+{
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j] < arr[minIndex])
+                minIndex = j;
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    selectionSort(arr);
+
+    cout << "Sorted Array: ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 07.cpp -o 07
+krg@krgs-Mac shell % ./07
+Enter number of elements: 5
+Enter elements:
+64 25 12 22 11
+Sorted Array: 11 12 22 25 64
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 8: Quick Sort (Descending)
+% ============================================================
+\section*{Program 8: Quick Sort (Descending)}
+\addcontentsline{toc}{section}{Program 8: Quick Sort (Descending)}
+
+\subsection*{Problem Statement}
+Write a program to sort a list of elements in descending order using Quick Sort. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Choose the last element as pivot.
+    \item Partition: Arrange elements so that all elements greater than pivot are on the left, and smaller on the right (for descending order).
+    \item Recursively apply Quick Sort to the left and right subarrays.
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity (Average)}: O(n log n).
+    \item \textbf{Worst Case}: O(n$^2$) — When pivot is always the smallest or largest element.
+    \item \textbf{Best Case}: O(n log n) — When pivot divides the array into equal halves.
+    \item \textbf{Space Complexity}: O(log n) — Due to recursive stack.
+\end{itemize}
+
+\subsection*{Source Code (08.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int> &arr, int low, int high)
+{
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (arr[j] > pivot)
+        {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int> &arr, int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    quickSort(arr, 0, n - 1);
+
+    cout << "Sorted Array (Descending): ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 08.cpp -o 08
+krg@krgs-Mac shell % ./08
+Enter number of elements: 6
+Enter elements:
+10 80 30 90 40 50
+Sorted Array (Descending): 90 80 50 40 30 10
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 9: Merge Two Sorted Arrays
+% ============================================================
+\section*{Program 9: Merge Two Sorted Arrays}
+\addcontentsline{toc}{section}{Program 9: Merge Two Sorted Arrays}
+
+\subsection*{Problem Statement}
+Write a program to merge two sorted arrays into a third sorted array. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Initialize i = 0 for arr1, j = 0 for arr2.
+    \item While i < size1 and j < size2: Compare arr1[i] and arr2[j]; append the smaller to result.
+    \item Copy remaining elements of arr1 (if any).
+    \item Copy remaining elements of arr2 (if any).
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n + m) — Where n and m are sizes of the two arrays.
+    \item \textbf{Space Complexity}: O(n + m) — For the merged array.
+\end{itemize}
+
+\subsection*{Source Code (09.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> mergeArrays(const vector<int> &arr1,
+                        const vector<int> &arr2)
+{
+    vector<int> merged;
+    int i = 0, j = 0;
+
+    while (i < arr1.size() && j < arr2.size())
+    {
+        if (arr1[i] <= arr2[j])
+        { merged.push_back(arr1[i]); i++; }
+        else
+        { merged.push_back(arr2[j]); j++; }
+    }
+
+    while (i < arr1.size()) { merged.push_back(arr1[i]); i++; }
+    while (j < arr2.size()) { merged.push_back(arr2[j]); j++; }
+
+    return merged;
+}
+
+int main()
+{
+    int n1, n2;
+    cout << "Enter size of first sorted array: "; cin >> n1;
+    vector<int> arr1(n1);
+    cout << "Enter elements of first sorted array:\n";
+    for (int i = 0; i < n1; i++) cin >> arr1[i];
+
+    cout << "Enter size of second sorted array: "; cin >> n2;
+    vector<int> arr2(n2);
+    cout << "Enter elements of second sorted array:\n";
+    for (int i = 0; i < n2; i++) cin >> arr2[i];
+
+    vector<int> merged = mergeArrays(arr1, arr2);
+
+    cout << "Merged Sorted Array: ";
+    for (int x : merged) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 09.cpp -o 09
+krg@krgs-Mac shell % ./09
+Enter size of first sorted array: 4
+Enter elements of first sorted array:
+1 3 5 7
+Enter size of second sorted array: 3
+Enter elements of second sorted array:
+2 4 6
+Merged Sorted Array: 1 2 3 4 5 6 7
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 10: Merge Sort
+% ============================================================
+\section*{Program 10: Merge Sort}
+\addcontentsline{toc}{section}{Program 10: Merge Sort}
+
+\subsection*{Problem Statement}
+Write a program to sort a list of elements using Merge Sort. Discuss the complexity of this algorithm.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Divide the array into two halves recursively until each subarray has one element.
+    \item Merge the sorted halves by comparing elements and combining them in sorted order.
+    \item The merge function uses a temporary array to store the sorted result.
+\end{enumerate}
+
+\subsection*{Complexity Analysis}
+\begin{itemize}
+    \item \textbf{Time Complexity}: O(n log n) in all cases (best, average, worst).
+    \item \textbf{Space Complexity}: O(n) — For the temporary arrays during merge.
+    \item \textbf{Stable}: Yes, relative order of equal elements is preserved.
+\end{itemize}
+
+\subsection*{Source Code (10.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int> &arr, int left, int mid, int right)
+{
+    vector<int> temp;
+    int i = left, j = mid + 1;
+
+    while (i <= mid && j <= right)
+    {
+        if (arr[i] <= arr[j])
+        { temp.push_back(arr[i]); i++; }
+        else
+        { temp.push_back(arr[j]); j++; }
+    }
+    while (i <= mid) { temp.push_back(arr[i]); i++; }
+    while (j <= right) { temp.push_back(arr[j]); j++; }
+
+    for (int k = 0; k < temp.size(); k++)
+        arr[left + k] = temp[k];
+}
+
+void mergeSort(vector<int> &arr, int left, int right)
+{
+    if (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter number of elements: "; cin >> n;
+    vector<int> arr(n);
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    mergeSort(arr, 0, n - 1);
+
+    cout << "Sorted Array: ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 10.cpp -o 10
+krg@krgs-Mac shell % ./10
+Enter number of elements: 7
+Enter elements:
+38 27 43 3 9 82 10
+Sorted Array: 3 9 10 27 38 43 82
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 11: Height-Balanced Binary Tree
+% ============================================================
+\section*{Program 11: Check if Binary Tree is Height-Balanced}
+\addcontentsline{toc}{section}{Program 11: Height-Balanced Binary Tree}
+
+\subsection*{Problem Statement}
+Write a program to check if a binary tree is height-balanced. A binary tree is height-balanced if for every node, the difference between the heights of its left and right subtrees is at most 1.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Recursively compute the height of left and right subtrees.
+    \item If any subtree returns -1, propagate -1 upward (unbalanced).
+    \item If |leftHeight - rightHeight| $>$ 1, return -1 (unbalanced).
+    \item Otherwise, return max(leftHeight, rightHeight) + 1.
+\end{enumerate}
+
+\subsection*{Source Code (11.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+    Node(int val) { data = val; left = right = NULL; }
+};
+
+int checkBalance(Node *root)
+{
+    if (root == NULL) return 0;
+
+    int leftHeight = checkBalance(root->left);
+    if (leftHeight == -1) return -1;
+
+    int rightHeight = checkBalance(root->right);
+    if (rightHeight == -1) return -1;
+
+    if (abs(leftHeight - rightHeight) > 1) return -1;
+
+    return max(leftHeight, rightHeight) + 1;
+}
+
+bool isBalanced(Node *root)
+{ return checkBalance(root) != -1; }
+
+int main()
+{
+    Node *root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+
+    if (isBalanced(root))
+        cout << "Binary Tree is Height Balanced" << endl;
+    else
+        cout << "Binary Tree is NOT Height Balanced" << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 11.cpp -o 11
+krg@krgs-Mac shell % ./11
+Binary Tree is Height Balanced
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 12: Priority Queue using Linked List
+% ============================================================
+\section*{Program 12: Priority Queue using Linked List}
+\addcontentsline{toc}{section}{Program 12: Priority Queue using Linked List}
+
+\subsection*{Problem Statement}
+Write a program to implement a priority queue using a linked list. Include operations such as enqueue with priority, dequeue, and display the elements.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Enqueue: Insert the new node such that the list remains sorted by priority (lower number = higher priority).
+    \item Dequeue: Remove and return the front node (highest priority).
+    \item Display: Traverse the list showing element data and priority.
+\end{enumerate}
+
+\subsection*{Source Code (12.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data, priority;
+    Node* next;
+    Node(int d, int p) { data = d; priority = p; next = NULL; }
+};
+
+class PriorityQueue {
+private:
+    Node* front;
+public:
+    PriorityQueue() { front = NULL; }
+
+    void enqueue(int data, int priority) {
+        Node* newNode = new Node(data, priority);
+        if (front == NULL || priority < front->priority) {
+            newNode->next = front; front = newNode; return;
+        }
+        Node* temp = front;
+        while (temp->next != NULL && temp->next->priority <= priority)
+            temp = temp->next;
+        newNode->next = temp->next; temp->next = newNode;
+    }
+
+    void dequeue() {
+        if (front == NULL) { cout << "Priority Queue Underflow\n"; return; }
+        Node* temp = front;
+        cout << "Deleted Element: " << front->data << endl;
+        front = front->next; delete temp;
+    }
+
+    void display() {
+        if (front == NULL) { cout << "Priority Queue is Empty\n"; return; }
+        Node* temp = front;
+        cout << "\nElement\tPriority\n";
+        while (temp != NULL) {
+            cout << temp->data << "\t" << temp->priority << endl;
+            temp = temp->next;
+        }
+    }
+};
+
+int main() {
+    PriorityQueue pq; int choice, data, priority;
+    do {
+        cout << "\n===== PRIORITY QUEUE MENU =====\n";
+        cout << "1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter data: "; cin >> data;
+                cout << "Enter priority: "; cin >> priority;
+                pq.enqueue(data, priority); break;
+        case 2: pq.dequeue(); break;
+        case 3: pq.display(); break;
+        case 4: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 4);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 12.cpp -o 12
+krg@krgs-Mac shell % ./12
+
+===== PRIORITY QUEUE MENU =====
+1. Enqueue
+2. Dequeue
+3. Display
+4. Exit
+Enter choice: 1
+Enter data: 10
+Enter priority: 2
+
+===== PRIORITY QUEUE MENU =====
+Enter choice: 1
+Enter data: 20
+Enter priority: 1
+
+===== PRIORITY QUEUE MENU =====
+Enter choice: 3
+
+Element Priority
+20      1
+10      2
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 13: Queue using Array
+% ============================================================
+\section*{Program 13: Queue using Array}
+\addcontentsline{toc}{section}{Program 13: Queue using Array}
+
+\subsection*{Problem Statement}
+Implement a queue using an array and perform operations such as enqueue, dequeue, and display the elements.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Maintain front and rear pointers, initially set to -1.
+    \item \textbf{Enqueue}: If rear == size-1, display "Queue Overflow". Otherwise, if front == -1 set front = 0. Increment rear and insert the value.
+    \item \textbf{Dequeue}: If front == -1 or front > rear, display "Queue Underflow". Otherwise, return the element at front and increment front. If front > rear, reset front = rear = -1.
+    \item \textbf{Display}: Traverse from front to rear and print each element.
+\end{enumerate}
+
+\subsection*{Source Code (13.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Queue
+{
+private:
+    int front, rear, arr[100], size;
+public:
+    Queue(int s = 100) { size = s; front = -1; rear = -1; }
+
+    void enqueue(int value)
+    {
+        if (rear == size - 1) { cout << "Queue Overflow\n"; return; }
+        if (front == -1) front = 0;
+        arr[++rear] = value;
+        cout << value << " inserted.\n";
+    }
+
+    void dequeue()
+    {
+        if (front == -1 || front > rear)
+        { cout << "Queue Underflow\n"; return; }
+        cout << "Deleted Element: " << arr[front] << endl;
+        front++;
+        if (front > rear) front = rear = -1;
+    }
+
+    void display()
+    {
+        if (front == -1) { cout << "Queue is Empty\n"; return; }
+        cout << "Queue Elements: ";
+        for (int i = front; i <= rear; i++) cout << arr[i] << " ";
+        cout << endl;
+    }
+};
+
+int main()
+{
+    Queue q; int choice, value;
+    do {
+        cout << "\n===== QUEUE MENU =====\n";
+        cout << "1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\nEnter Choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; q.enqueue(value); break;
+        case 2: q.dequeue(); break;
+        case 3: q.display(); break;
+        case 4: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 4);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 13.cpp -o 13
+krg@krgs-Mac shell % ./13
+
+===== QUEUE MENU =====
+1. Enqueue
+2. Dequeue
+3. Display
+4. Exit
+Enter Choice: 1
+Enter value: 10
+10 inserted.
+
+===== QUEUE MENU =====
+Enter Choice: 1
+Enter value: 20
+20 inserted.
+
+===== QUEUE MENU =====
+Enter Choice: 3
+Queue Elements: 10 20 
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 14: Deque using Linked List
+% ============================================================
+\section*{Program 14: Deque using Linked List}
+\addcontentsline{toc}{section}{Program 14: Deque using Linked List}
+
+\subsection*{Problem Statement}
+Create a doubly-ended queue (deque) using a linked list and include operations such as enqueue at the front, enqueue at the rear, dequeue from the front, dequeue from the rear, and display the elements.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data, prev, and next pointers.
+    \item Maintain front and rear pointers.
+    \item \textbf{Enqueue Front}: Create a new node. If deque is empty, set front and rear to new node. Otherwise, link new node before front and update front.
+    \item \textbf{Enqueue Rear}: Create a new node. If deque is empty, set front and rear to new node. Otherwise, link new node after rear and update rear.
+    \item \textbf{Dequeue Front}: If deque is empty, display "Underflow". Otherwise, remove front node and update front pointer.
+    \item \textbf{Dequeue Rear}: If deque is empty, display "Underflow". Otherwise, remove rear node and update rear pointer.
+    \item \textbf{Display}: Traverse from front to rear and print each element.
+\end{enumerate}
+
+\subsection*{Source Code (14.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *prev, *next;
+    Node(int val) { data = val; prev = next = NULL; }
+};
+
+class Deque {
+private:
+    Node *front, *rear;
+public:
+    Deque() { front = rear = NULL; }
+
+    void enqueueFront(int value) {
+        Node *newNode = new Node(value);
+        if (front == NULL) { front = rear = newNode; }
+        else { newNode->next = front; front->prev = newNode; front = newNode; }
+        cout << value << " inserted at front.\n";
+    }
+
+    void enqueueRear(int value) {
+        Node *newNode = new Node(value);
+        if (rear == NULL) { front = rear = newNode; }
+        else { rear->next = newNode; newNode->prev = rear; rear = newNode; }
+        cout << value << " inserted at rear.\n";
+    }
+
+    void dequeueFront() {
+        if (front == NULL) { cout << "Deque Underflow\n"; return; }
+        Node *temp = front;
+        cout << "Deleted from front: " << front->data << endl;
+        if (front == rear) { front = rear = NULL; }
+        else { front = front->next; front->prev = NULL; }
+        delete temp;
+    }
+
+    void dequeueRear() {
+        if (rear == NULL) { cout << "Deque Underflow\n"; return; }
+        Node *temp = rear;
+        cout << "Deleted from rear: " << rear->data << endl;
+        if (front == rear) { front = rear = NULL; }
+        else { rear = rear->prev; rear->next = NULL; }
+        delete temp;
+    }
+
+    void display() {
+        if (front == NULL) { cout << "Deque is Empty\n"; return; }
+        Node *temp = front;
+        cout << "Deque Elements: ";
+        while (temp != NULL) { cout << temp->data << " "; temp = temp->next; }
+        cout << endl;
+    }
+};
+
+int main() {
+    Deque dq; int choice, value;
+    do {
+        cout << "\n===== DEQUE MENU =====\n";
+        cout << "1. Enqueue Front\n2. Enqueue Rear\n";
+        cout << "3. Dequeue Front\n4. Dequeue Rear\n5. Display\n6. Exit\nEnter Choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; dq.enqueueFront(value); break;
+        case 2: cout << "Enter value: "; cin >> value; dq.enqueueRear(value); break;
+        case 3: dq.dequeueFront(); break;
+        case 4: dq.dequeueRear(); break;
+        case 5: dq.display(); break;
+        case 6: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 6);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 14.cpp -o 14
+krg@krgs-Mac shell % ./14
+
+===== DEQUE MENU =====
+1. Enqueue Front
+2. Enqueue Rear
+3. Dequeue Front
+4. Dequeue Rear
+5. Display
+6. Exit
+Enter Choice: 1
+Enter value: 30
+30 inserted at front.
+
+===== DEQUE MENU =====
+Enter Choice: 2
+Enter value: 40
+40 inserted at rear.
+
+===== DEQUE MENU =====
+Enter Choice: 5
+Deque Elements: 30 40 
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 15: Factorial
+% ============================================================
+\section*{Program 15: Factorial using Recursion and Iteration}
+\addcontentsline{toc}{section}{Program 15: Factorial}
+
+\subsection*{Problem Statement}
+Write a program to calculate the factorial of a number using recursion and iteration.
+
+\subsection*{Algorithm}
+\textbf{Recursive:} If n == 0 or n == 1, return 1. Else return n $\times$ factorial(n-1).\\
+\textbf{Iterative:} Initialize fact = 1. For i = 1 to n, fact = fact $\times$ i. Return fact.
+
+\subsection*{Source Code (15.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+long long factorialRecursive(int n)
+{
+    if (n == 0 || n == 1) return 1;
+    return n * factorialRecursive(n - 1);
+}
+
+long long factorialIterative(int n)
+{
+    long long fact = 1;
+    for (int i = 1; i <= n; i++) fact *= i;
+    return fact;
+}
+
+int main()
+{
+    int n;
+    cout << "Enter a number: "; cin >> n;
+    if (n < 0) { cout << "Factorial not defined for negative numbers.\n"; return 0; }
+    cout << "Factorial using Recursion = " << factorialRecursive(n) << endl;
+    cout << "Factorial using Iteration = " << factorialIterative(n) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 15.cpp -o 15
+krg@krgs-Mac shell % ./15
+Enter a number: 6
+Factorial using Recursion = 720
+Factorial using Iteration = 720
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 16: Infix to Postfix
+% ============================================================
+\section*{Program 16: Infix to Postfix Conversion}
+\addcontentsline{toc}{section}{Program 16: Infix to Postfix}
+
+\subsection*{Problem Statement}
+Write a program to convert an infix expression to postfix notation using a stack.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Scan the infix expression from left to right.
+    \item If operand, add to postfix string.
+    \item If '(', push to stack.
+    \item If ')', pop from stack until '(' is found.
+    \item If operator, pop operators with higher or equal precedence, then push current operator.
+    \item After scanning, pop all remaining operators.
+\end{enumerate}
+
+\subsection*{Source Code (16.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int precedence(char op) {
+    if (op == '^') return 3;
+    if (op == '*' || op == '/') return 2;
+    if (op == '+' || op == '-') return 1;
+    return 0;
+}
+
+bool isOperand(char ch) { return isalnum(ch); }
+
+string infixToPostfix(string infix) {
+    stack<char> st;
+    string postfix = "";
+    for (char ch : infix) {
+        if (isOperand(ch)) { postfix += ch; }
+        else if (ch == '(') { st.push(ch); }
+        else if (ch == ')') {
+            while (!st.empty() && st.top() != '(') {
+                postfix += st.top(); st.pop();
+            }
+            if (!st.empty()) st.pop();
+        }
+        else {
+            while (!st.empty() && precedence(st.top()) >= precedence(ch)) {
+                postfix += st.top(); st.pop();
+            }
+            st.push(ch);
+        }
+    }
+    while (!st.empty()) { postfix += st.top(); st.pop(); }
+    return postfix;
+}
+
+int main() {
+    string infix;
+    cout << "Enter Infix Expression: "; cin >> infix;
+    cout << "Postfix Expression: " << infixToPostfix(infix) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 16.cpp -o 16
+krg@krgs-Mac shell % ./16
+Enter Infix Expression: a+b*c
+Postfix Expression: abc*+
+\end{lstlisting}
+
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./16
+Enter Infix Expression: (a+b)*c
+Postfix Expression: ab+c*
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 17: Evaluate Postfix
+% ============================================================
+\section*{Program 17: Evaluate Postfix Expression}
+\addcontentsline{toc}{section}{Program 17: Evaluate Postfix}
+
+\subsection*{Problem Statement}
+Write a program to evaluate a postfix expression using a stack.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Scan the postfix expression from left to right.
+    \item If operand, push to stack.
+    \item If operator, pop two operands, apply the operator, push the result.
+    \item After scanning, the stack contains the result.
+\end{enumerate}
+
+\subsection*{Source Code (17.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <stack>
+#include <cmath>
+using namespace std;
+
+int evaluatePostfix(string postfix) {
+    stack<int> st;
+    for (char ch : postfix) {
+        if (isdigit(ch)) { st.push(ch - '0'); }
+        else {
+            int op2 = st.top(); st.pop();
+            int op1 = st.top(); st.pop();
+            switch (ch) {
+            case '+': st.push(op1 + op2); break;
+            case '-': st.push(op1 - op2); break;
+            case '*': st.push(op1 * op2); break;
+            case '/': st.push(op1 / op2); break;
+            case '^': st.push(pow(op1, op2)); break;
+            }
+        }
+    }
+    return st.top();
+}
+
+int main() {
+    string postfix;
+    cout << "Enter Postfix Expression: "; cin >> postfix;
+    cout << "Result = " << evaluatePostfix(postfix) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 17.cpp -o 17
+krg@krgs-Mac shell % ./17
+Enter Postfix Expression: 23*5+
+Result = 11
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 18: Prefix to Infix
+% ============================================================
+\section*{Program 18: Prefix to Infix Conversion}
+\addcontentsline{toc}{section}{Program 18: Prefix to Infix}
+
+\subsection*{Problem Statement}
+Write a program to convert a prefix expression to infix notation using a stack.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Scan the prefix expression from right to left.
+    \item If operand, push to stack as a string.
+    \item If operator, pop two operands, combine as (op1 operator op2), push back.
+    \item After scanning, the stack contains the infix expression.
+\end{enumerate}
+
+\subsection*{Source Code (18.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+bool isOperator(char ch) {
+    return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^');
+}
+
+string prefixToInfix(string prefix) {
+    stack<string> st;
+    for (int i = prefix.length() - 1; i >= 0; i--) {
+        char ch = prefix[i];
+        if (isalnum(ch)) { st.push(string(1, ch)); }
+        else if (isOperator(ch)) {
+            string op1 = st.top(); st.pop();
+            string op2 = st.top(); st.pop();
+            string temp = "(" + op1 + ch + op2 + ")";
+            st.push(temp);
+        }
+    }
+    return st.top();
+}
+
+int main() {
+    string prefix;
+    cout << "Enter Prefix Expression: "; cin >> prefix;
+    cout << "Infix Expression: " << prefixToInfix(prefix) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 18.cpp -o 18
+krg@krgs-Mac shell % ./18
+Enter Prefix Expression: +*abc
+Infix Expression: (a*b+c)
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 19: Evaluate Prefix
+% ============================================================
+\section*{Program 19: Evaluate Prefix Expression}
+\addcontentsline{toc}{section}{Program 19: Evaluate Prefix}
+
+\subsection*{Problem Statement}
+Write a program to evaluate a prefix expression using a stack.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Scan the prefix expression from right to left.
+    \item If operand, push to stack.
+    \item If operator, pop two operands, apply operator, push result.
+    \item After scanning, the stack contains the result.
+\end{enumerate}
+
+\subsection*{Source Code (19.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+#include <stack>
+#include <cmath>
+using namespace std;
+
+int evaluatePrefix(string prefix) {
+    stack<int> st;
+    for (int i = prefix.length() - 1; i >= 0; i--) {
+        char ch = prefix[i];
+        if (isdigit(ch)) { st.push(ch - '0'); }
+        else {
+            int op1 = st.top(); st.pop();
+            int op2 = st.top(); st.pop();
+            switch (ch) {
+            case '+': st.push(op1 + op2); break;
+            case '-': st.push(op1 - op2); break;
+            case '*': st.push(op1 * op2); break;
+            case '/': st.push(op1 / op2); break;
+            case '^': st.push(pow(op1, op2)); break;
+            }
+        }
+    }
+    return st.top();
+}
+
+int main() {
+    string prefix;
+    cout << "Enter Prefix Expression: "; cin >> prefix;
+    cout << "Result = " << evaluatePrefix(prefix) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 19.cpp -o 19
+krg@krgs-Mac shell % ./19
+Enter Prefix Expression: +*235
+Result = 11
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 20: Singly Linked List
+% ============================================================
+\section*{Program 20: Singly Linked List}
+\addcontentsline{toc}{section}{Program 20: Singly Linked List}
+
+\subsection*{Problem Statement}
+Implement Singly Linked List. Include functions for insertion, display, and deletion operations.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data and next pointer.
+    \item Maintain a head pointer initialized to NULL.
+    \item \textbf{Insert}: Create a new node. If head is NULL, set head to new node. Otherwise, traverse to the last node and link the new node.
+    \item \textbf{Delete}: If head is NULL, display "List is empty". If head contains the value, delete head. Otherwise, traverse to find the node with the value and unlink it.
+    \item \textbf{Display}: Traverse from head and print each node's data until NULL is reached.
+\end{enumerate}
+
+\subsection*{Source Code (20.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int val) { data = val; next = NULL; }
+};
+
+class SinglyLinkedList {
+private:
+    Node *head;
+public:
+    SinglyLinkedList() { head = NULL; }
+
+    void insert(int value) {
+        Node *newNode = new Node(value);
+        if (head == NULL) { head = newNode; return; }
+        Node *temp = head;
+        while (temp->next != NULL) temp = temp->next;
+        temp->next = newNode;
+    }
+
+    void deleteNode(int value) {
+        if (head == NULL) { cout << "List is empty\n"; return; }
+        if (head->data == value) {
+            Node *temp = head; head = head->next; delete temp;
+            cout << "Node deleted\n"; return;
+        }
+        Node *curr = head;
+        while (curr->next != NULL && curr->next->data != value)
+            curr = curr->next;
+        if (curr->next == NULL) { cout << "Value not found\n"; return; }
+        Node *temp = curr->next;
+        curr->next = temp->next; delete temp;
+        cout << "Node deleted\n";
+    }
+
+    void display() {
+        if (head == NULL) { cout << "List is empty\n"; return; }
+        Node *temp = head;
+        cout << "Linked List: ";
+        while (temp != NULL) { cout << temp->data << " -> "; temp = temp->next; }
+        cout << "NULL\n";
+    }
+};
+
+int main() {
+    SinglyLinkedList list; int choice, value;
+    do {
+        cout << "\n===== SINGLY LINKED LIST MENU =====\n";
+        cout << "1. Insert\n2. Delete\n3. Display\n4. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; list.insert(value); break;
+        case 2: cout << "Enter value to delete: "; cin >> value; list.deleteNode(value); break;
+        case 3: list.display(); break;
+        case 4: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 4);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 20.cpp -o 20
+krg@krgs-Mac shell % ./20
+
+===== SINGLY LINKED LIST MENU =====
+1. Insert
+2. Delete
+3. Display
+4. Exit
+Enter choice: 1
+Enter value: 10
+
+Enter choice: 1
+Enter value: 20
+
+Enter choice: 3
+Linked List: 10 -> 20 -> NULL
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 21: Doubly Linked List
+% ============================================================
+\section*{Program 21: Doubly Linked List}
+\addcontentsline{toc}{section}{Program 21: Doubly Linked List}
+
+\subsection*{Problem Statement}
+Implement Doubly Linked List. Include functions for insertion, deletion, searching, and display.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data, prev, and next pointers.
+    \item Maintain a head pointer initialized to NULL.
+    \item \textbf{Insert}: Create a new node. Traverse to the last node, link it to the new node, and set the new node's prev pointer.
+    \item \textbf{Delete}: Search for the node with the given value. Adjust the prev and next pointers of neighboring nodes, then delete the node.
+    \item \textbf{Search}: Traverse the list and compare each node's data with the key. Return the position if found.
+    \item \textbf{Display}: Traverse from head to NULL, printing each node's data with bidirectional arrows.
+\end{enumerate}
+
+\subsection*{Source Code (21.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *prev, *next;
+    Node(int val) { data = val; prev = NULL; next = NULL; }
+};
+
+class DoublyLinkedList {
+private:
+    Node *head;
+public:
+    DoublyLinkedList() { head = NULL; }
+
+    void insert(int value) {
+        Node *newNode = new Node(value);
+        if (head == NULL) { head = newNode; return; }
+        Node *temp = head;
+        while (temp->next != NULL) temp = temp->next;
+        temp->next = newNode; newNode->prev = temp;
+    }
+
+    void deleteNode(int value) {
+        if (head == NULL) { cout << "List is empty\n"; return; }
+        Node *temp = head;
+        while (temp != NULL && temp->data != value) temp = temp->next;
+        if (temp == NULL) { cout << "Value not found\n"; return; }
+        if (temp == head) {
+            head = head->next;
+            if (head != NULL) head->prev = NULL;
+            delete temp; cout << "Node deleted\n"; return;
+        }
+        if (temp->next != NULL) temp->next->prev = temp->prev;
+        temp->prev->next = temp->next;
+        delete temp; cout << "Node deleted\n";
+    }
+
+    void search(int value) {
+        Node *temp = head; int pos = 1;
+        while (temp != NULL) {
+            if (temp->data == value) { cout << "Element found at position " << pos << endl; return; }
+            temp = temp->next; pos++;
+        }
+        cout << "Element not found\n";
+    }
+
+    void display() {
+        if (head == NULL) { cout << "List is empty\n"; return; }
+        Node *temp = head;
+        cout << "NULL <- ";
+        while (temp != NULL) {
+            cout << temp->data;
+            if (temp->next != NULL) cout << " <-> ";
+            temp = temp->next;
+        }
+        cout << " -> NULL\n";
+    }
+};
+
+int main() {
+    DoublyLinkedList list; int choice, value;
+    do {
+        cout << "\n===== DOUBLY LINKED LIST MENU =====\n";
+        cout << "1. Insert\n2. Delete\n3. Search\n4. Display\n5. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; list.insert(value); break;
+        case 2: cout << "Enter value to delete: "; cin >> value; list.deleteNode(value); break;
+        case 3: cout << "Enter value to search: "; cin >> value; list.search(value); break;
+        case 4: list.display(); break;
+        case 5: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 5);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 21.cpp -o 21
+krg@krgs-Mac shell % ./21
+
+===== DOUBLY LINKED LIST MENU =====
+1. Insert
+2. Delete
+3. Search
+4. Display
+5. Exit
+Enter choice: 1
+Enter value: 5
+
+Enter choice: 1
+Enter value: 10
+
+Enter choice: 4
+NULL <- 5 <-> 10 -> NULL
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 22: Circular Linked List
+% ============================================================
+\section*{Program 22: Circular Linked List}
+\addcontentsline{toc}{section}{Program 22: Circular Linked List}
+
+\subsection*{Problem Statement}
+Implement Circular Linked List. Include functions for insertion, deletion, searching, and display.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data and next pointer.
+    \item Maintain a last pointer initialized to NULL (last node points to first node).
+    \item \textbf{Insert}: Create a new node. If list is empty, set last to new node and point its next to itself. Otherwise, insert after last and update last.
+    \item \textbf{Delete}: Traverse from last->next (first node). Find the node with the value and remove it by adjusting the previous node's next pointer.
+    \item \textbf{Search}: Traverse the circular list using a do-while loop until we return to the start.
+    \item \textbf{Display}: Traverse the circular list and print each node's data, ending with "(back to start)".
+\end{enumerate}
+
+\subsection*{Source Code (22.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int val) { data = val; next = NULL; }
+};
+
+class CircularLinkedList {
+private:
+    Node *last;
+public:
+    CircularLinkedList() { last = NULL; }
+
+    void insert(int value) {
+        Node *newNode = new Node(value);
+        if (last == NULL) { last = newNode; last->next = last; return; }
+        newNode->next = last->next; last->next = newNode; last = newNode;
+    }
+
+    void deleteNode(int value) {
+        if (last == NULL) { cout << "List is empty\n"; return; }
+        Node *curr = last->next, *prev = last;
+        do {
+            if (curr->data == value) {
+                if (curr == last && curr == last->next) { delete curr; last = NULL; }
+                else if (curr == last) { prev->next = curr->next; last = prev; delete curr; }
+                else { prev->next = curr->next; delete curr; }
+                cout << "Node deleted\n"; return;
+            }
+            prev = curr; curr = curr->next;
+        } while (curr != last->next);
+        cout << "Value not found\n";
+    }
+
+    void search(int value) {
+        if (last == NULL) { cout << "List is empty\n"; return; }
+        Node *temp = last->next; int pos = 1;
+        do {
+            if (temp->data == value) { cout << "Element found at position " << pos << endl; return; }
+            temp = temp->next; pos++;
+        } while (temp != last->next);
+        cout << "Element not found\n";
+    }
+
+    void display() {
+        if (last == NULL) { cout << "List is empty\n"; return; }
+        Node *temp = last->next;
+        cout << "Circular List: ";
+        do { cout << temp->data << " "; temp = temp->next; } while (temp != last->next);
+        cout << "(back to start)\n";
+    }
+};
+
+int main() {
+    CircularLinkedList list; int choice, value;
+    do {
+        cout << "\n===== CIRCULAR LINKED LIST MENU =====\n";
+        cout << "1. Insert\n2. Delete\n3. Search\n4. Display\n5. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; list.insert(value); break;
+        case 2: cout << "Enter value to delete: "; cin >> value; list.deleteNode(value); break;
+        case 3: cout << "Enter value to search: "; cin >> value; list.search(value); break;
+        case 4: list.display(); break;
+        case 5: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 5);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 22.cpp -o 22
+krg@krgs-Mac shell % ./22
+
+===== CIRCULAR LINKED LIST MENU =====
+1. Insert
+2. Delete
+3. Search
+4. Display
+5. Exit
+Enter choice: 1
+Enter value: 10
+
+Enter choice: 1
+Enter value: 20
+
+Enter choice: 4
+Circular List: 10 20 (back to start)
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 23: Reverse a Linked List
+% ============================================================
+\section*{Program 23: Reverse a Linked List}
+\addcontentsline{toc}{section}{Program 23: Reverse a Linked List}
+
+\subsection*{Problem Statement}
+Write a program to reverse a Linked List.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Initialize three pointers: prev = NULL, curr = head, nextNode = NULL.
+    \item While curr != NULL: Store curr->next in nextNode. Set curr->next = prev. Move prev to curr. Move curr to nextNode.
+    \item Set head = prev.
+\end{enumerate}
+
+\subsection*{Source Code (23.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int val) { data = val; next = NULL; }
+};
+
+class LinkedList {
+private:
+    Node *head;
+public:
+    LinkedList() { head = NULL; }
+
+    void insert(int value) {
+        Node *newNode = new Node(value);
+        if (head == NULL) { head = newNode; return; }
+        Node *temp = head;
+        while (temp->next != NULL) temp = temp->next;
+        temp->next = newNode;
+    }
+
+    void reverse() {
+        Node *prev = NULL, *curr = head, *nextNode = NULL;
+        while (curr != NULL) {
+            nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        head = prev;
+    }
+
+    void display() {
+        Node *temp = head;
+        while (temp != NULL) { cout << temp->data << " -> "; temp = temp->next; }
+        cout << "NULL" << endl;
+    }
+};
+
+int main() {
+    LinkedList list;
+    int n, value;
+    cout << "Enter number of nodes: "; cin >> n;
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++) { cin >> value; list.insert(value); }
+
+    cout << "\nOriginal Linked List:\n"; list.display();
+    list.reverse();
+    cout << "\nReversed Linked List:\n"; list.display();
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 23.cpp -o 23
+krg@krgs-Mac shell % ./23
+Enter number of nodes: 4
+Enter elements:
+1 2 3 4
+
+Original Linked List:
+1 -> 2 -> 3 -> 4 -> NULL
+
+Reversed Linked List:
+4 -> 3 -> 2 -> 1 -> NULL
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 24: Stack using Linked List
+% ============================================================
+\section*{Program 24: Stack using Linked List}
+\addcontentsline{toc}{section}{Program 24: Stack using Linked List}
+
+\subsection*{Problem Statement}
+Write a program to perform Stack operations using Linked List implementation.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data and next pointer.
+    \item Maintain a top pointer initialized to NULL.
+    \item \textbf{Push}: Create a new node, set its next to current top, and update top to the new node.
+    \item \textbf{Pop}: If top is NULL, display "Stack Underflow". Otherwise, remove the top node and update top to the next node.
+    \item \textbf{Peek}: Return top's data without removing it.
+    \item \textbf{Display}: Traverse from top to NULL, printing each node's data.
+\end{enumerate}
+
+\subsection*{Source Code (24.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int val) { data = val; next = NULL; }
+};
+
+class Stack {
+private:
+    Node *top;
+public:
+    Stack() { top = NULL; }
+
+    void push(int value) {
+        Node *newNode = new Node(value);
+        newNode->next = top; top = newNode;
+        cout << value << " pushed into stack.\n";
+    }
+
+    void pop() {
+        if (top == NULL) { cout << "Stack Underflow\n"; return; }
+        Node *temp = top;
+        cout << "Popped Element: " << top->data << endl;
+        top = top->next; delete temp;
+    }
+
+    void peek() {
+        if (top == NULL) { cout << "Stack is Empty\n"; return; }
+        cout << "Top Element: " << top->data << endl;
+    }
+
+    void display() {
+        if (top == NULL) { cout << "Stack is Empty\n"; return; }
+        Node *temp = top;
+        cout << "Stack Elements (Top to Bottom): ";
+        while (temp != NULL) { cout << temp->data << " "; temp = temp->next; }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack s; int choice, value;
+    do {
+        cout << "\n===== STACK MENU =====\n";
+        cout << "1. Push\n2. Pop\n3. Peek\n4. Display\n5. Exit\nEnter Choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; s.push(value); break;
+        case 2: s.pop(); break;
+        case 3: s.peek(); break;
+        case 4: s.display(); break;
+        case 5: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 5);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 24.cpp -o 24
+krg@krgs-Mac shell % ./24
+
+===== STACK MENU =====
+1. Push
+2. Pop
+3. Peek
+4. Display
+5. Exit
+Enter Choice: 1
+Enter value: 10
+10 pushed into stack.
+
+Enter Choice: 1
+Enter value: 20
+20 pushed into stack.
+
+Enter Choice: 4
+Stack Elements (Top to Bottom): 20 10 
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 25: Stack using Array
+% ============================================================
+\section*{Program 25: Stack using Array}
+\addcontentsline{toc}{section}{Program 25: Stack using Array}
+
+\subsection*{Problem Statement}
+Perform Stack operations using Array implementation.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Use an array of fixed size (e.g., 100) and a top variable initialized to -1.
+    \item \textbf{Push}: If top == size-1, display "Stack Overflow". Otherwise, increment top and insert value at arr[top].
+    \item \textbf{Pop}: If top == -1, display "Stack Underflow". Otherwise, return arr[top] and decrement top.
+    \item \textbf{Peek}: If top == -1, display "Stack is Empty". Otherwise, return arr[top].
+    \item \textbf{Display}: Traverse from top down to 0 and print each element.
+\end{enumerate}
+
+\subsection*{Source Code (25.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Stack {
+private:
+    int arr[100], top;
+public:
+    Stack() { top = -1; }
+
+    void push(int value) {
+        if (top == 99) { cout << "Stack Overflow\n"; return; }
+        arr[++top] = value;
+        cout << value << " pushed into stack.\n";
+    }
+
+    void pop() {
+        if (top == -1) { cout << "Stack Underflow\n"; return; }
+        cout << "Popped Element: " << arr[top--] << endl;
+    }
+
+    void peek() {
+        if (top == -1) { cout << "Stack is Empty\n"; return; }
+        cout << "Top Element: " << arr[top] << endl;
+    }
+
+    void display() {
+        if (top == -1) { cout << "Stack is Empty\n"; return; }
+        cout << "Stack Elements (Top to Bottom): ";
+        for (int i = top; i >= 0; i--) cout << arr[i] << " ";
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack s; int choice, value;
+    do {
+        cout << "\n===== STACK MENU =====\n";
+        cout << "1. Push\n2. Pop\n3. Peek\n4. Display\n5. Exit\nEnter Choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; s.push(value); break;
+        case 2: s.pop(); break;
+        case 3: s.peek(); break;
+        case 4: s.display(); break;
+        case 5: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 5);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 25.cpp -o 25
+krg@krgs-Mac shell % ./25
+
+===== STACK MENU =====
+1. Push
+2. Pop
+3. Peek
+4. Display
+5. Exit
+Enter Choice: 1
+Enter value: 100
+100 pushed into stack.
+
+Enter Choice: 1
+Enter value: 200
+200 pushed into stack.
+
+Enter Choice: 4
+Stack Elements (Top to Bottom): 200 100 
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 26: Deque using Linked List
+% ============================================================
+\section*{Program 26: Double-ended Queue using Linked List}
+\addcontentsline{toc}{section}{Program 26: Deque using Linked List}
+
+\subsection*{Problem Statement}
+Write a program to create and perform different operations on Double-ended Queues using Linked List implementation.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with data, prev, and next pointers.
+    \item Maintain front and rear pointers initialized to NULL.
+    \item \textbf{Insert Front}: Create a new node. If deque is empty, set front = rear = newNode. Otherwise, link new node before front and update front.
+    \item \textbf{Insert Rear}: Create a new node. If deque is empty, set front = rear = newNode. Otherwise, link new node after rear and update rear.
+    \item \textbf{Delete Front}: If deque is empty, display "Underflow". Remove front node and update front pointer.
+    \item \textbf{Delete Rear}: If deque is empty, display "Underflow". Remove rear node and update rear pointer.
+    \item \textbf{Display}: Traverse from front to rear and print each element.
+\end{enumerate}
+
+\subsection*{Source Code (26.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *prev, *next;
+    Node(int val) { data = val; prev = NULL; next = NULL; }
+};
+
+class Deque {
+private:
+    Node *front, *rear;
+public:
+    Deque() { front = rear = NULL; }
+
+    void insertFront(int value) {
+        Node *newNode = new Node(value);
+        if (front == NULL) { front = rear = newNode; }
+        else { newNode->next = front; front->prev = newNode; front = newNode; }
+        cout << value << " inserted at front.\n";
+    }
+
+    void insertRear(int value) {
+        Node *newNode = new Node(value);
+        if (rear == NULL) { front = rear = newNode; }
+        else { rear->next = newNode; newNode->prev = rear; rear = newNode; }
+        cout << value << " inserted at rear.\n";
+    }
+
+    void deleteFront() {
+        if (front == NULL) { cout << "Deque Underflow\n"; return; }
+        Node *temp = front;
+        cout << "Deleted from front: " << front->data << endl;
+        if (front == rear) { front = rear = NULL; }
+        else { front = front->next; front->prev = NULL; }
+        delete temp;
+    }
+
+    void deleteRear() {
+        if (rear == NULL) { cout << "Deque Underflow\n"; return; }
+        Node *temp = rear;
+        cout << "Deleted from rear: " << rear->data << endl;
+        if (front == rear) { front = rear = NULL; }
+        else { rear = rear->prev; rear->next = NULL; }
+        delete temp;
+    }
+
+    void display() {
+        if (front == NULL) { cout << "Deque is Empty\n"; return; }
+        Node *temp = front;
+        cout << "Deque Elements: ";
+        while (temp != NULL) { cout << temp->data << " "; temp = temp->next; }
+        cout << endl;
+    }
+};
+
+int main() {
+    Deque dq; int choice, value;
+    do {
+        cout << "\n===== DEQUE MENU =====\n";
+        cout << "1. Insert Front\n2. Insert Rear\n";
+        cout << "3. Delete Front\n4. Delete Rear\n5. Display\n6. Exit\nEnter Choice: ";
+        cin >> choice;
+        switch (choice) {
+        case 1: cout << "Enter value: "; cin >> value; dq.insertFront(value); break;
+        case 2: cout << "Enter value: "; cin >> value; dq.insertRear(value); break;
+        case 3: dq.deleteFront(); break;
+        case 4: dq.deleteRear(); break;
+        case 5: dq.display(); break;
+        case 6: cout << "Exiting...\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (choice != 6);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 26.cpp -o 26
+krg@krgs-Mac shell % ./26
+
+===== DEQUE MENU =====
+1. Insert Front
+2. Insert Rear
+3. Delete Front
+4. Delete Rear
+5. Display
+6. Exit
+Enter Choice: 1
+Enter value: 100
+100 inserted at front.
+
+Enter Choice: 2
+Enter value: 200
+200 inserted at rear.
+
+Enter Choice: 5
+Deque Elements: 100 200 
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 27: Polynomial Addition
+% ============================================================
+\section*{Program 27: Polynomial Addition using Linked List}
+\addcontentsline{toc}{section}{Program 27: Polynomial Addition}
+
+\subsection*{Problem Statement}
+Write a program to represent a polynomial using linked list and add two polynomials.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Create a Node class with coefficient, exponent, and next pointer.
+    \item Insert terms with (coefficient, exponent) in descending order of exponents.
+    \item To add two polynomials: Traverse both lists simultaneously.
+    \item If exponents are equal, add coefficients and insert the result.
+    \item If one exponent is larger, insert that term and move its pointer.
+    \item Continue until both lists are exhausted.
+\end{enumerate}
+
+\subsection*{Source Code (27.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+class Term {
+public:
+    int coeff, exp;
+    Term *next;
+    Term(int c, int e) { coeff = c; exp = e; next = NULL; }
+};
+
+class Polynomial {
+private:
+    Term *head;
+public:
+    Polynomial() { head = NULL; }
+
+    void insertTerm(int coeff, int exp) {
+        Term *newTerm = new Term(coeff, exp);
+        if (head == NULL || head->exp < exp) {
+            newTerm->next = head; head = newTerm; return;
+        }
+        Term *temp = head;
+        while (temp->next != NULL && temp->next->exp >= exp)
+            temp = temp->next;
+        if (temp->exp == exp) { temp->coeff += coeff; delete newTerm; return; }
+        newTerm->next = temp->next; temp->next = newTerm;
+    }
+
+    void display() {
+        Term *temp = head;
+        while (temp != NULL) {
+            cout << temp->coeff << "x^" << temp->exp;
+            if (temp->next != NULL) cout << " + ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+
+    Polynomial add(Polynomial &other) {
+        Polynomial result;
+        Term *p1 = head, *p2 = other.head;
+        while (p1 != NULL || p2 != NULL) {
+            if (p1 == NULL) { result.insertTerm(p2->coeff, p2->exp); p2 = p2->next; }
+            else if (p2 == NULL) { result.insertTerm(p1->coeff, p1->exp); p1 = p1->next; }
+            else if (p1->exp == p2->exp) {
+                result.insertTerm(p1->coeff + p2->coeff, p1->exp);
+                p1 = p1->next; p2 = p2->next;
+            }
+            else if (p1->exp > p2->exp) { result.insertTerm(p1->coeff, p1->exp); p1 = p1->next; }
+            else { result.insertTerm(p2->coeff, p2->exp); p2 = p2->next; }
+        }
+        return result;
+    }
+};
+
+int main() {
+    Polynomial p1, p2;
+    int n, coeff, exp;
+
+    cout << "Enter number of terms in first polynomial: "; cin >> n;
+    cout << "Enter coeff and exp for each term:\n";
+    for (int i = 0; i < n; i++) { cin >> coeff >> exp; p1.insertTerm(coeff, exp); }
+
+    cout << "Enter number of terms in second polynomial: "; cin >> n;
+    cout << "Enter coeff and exp for each term:\n";
+    for (int i = 0; i < n; i++) { cin >> coeff >> exp; p2.insertTerm(coeff, exp); }
+
+    cout << "\nPolynomial 1: "; p1.display();
+    cout << "Polynomial 2: "; p2.display();
+
+    Polynomial p3 = p1.add(p2);
+    cout << "Sum: "; p3.display();
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 27.cpp -o 27
+krg@krgs-Mac shell % ./27
+Enter number of terms in first polynomial: 3
+Enter coeff and exp for each term:
+5 2
+4 1
+2 0
+
+Enter number of terms in second polynomial: 2
+Enter coeff and exp for each term:
+3 2
+1 1
+
+Polynomial 1: 5x^2 + 4x^1 + 2x^0
+Polynomial 2: 3x^2 + 1x^1
+Sum: 8x^2 + 5x^1 + 2x^0
+\end{lstlisting}
+
+\newpage
+
+% ============================================================
+% PROGRAM 28: Fibonacci Series
+% ============================================================
+\section*{Program 28: Fibonacci Series using Recursion}
+\addcontentsline{toc}{section}{Program 28: Fibonacci Series}
+
+\subsection*{Problem Statement}
+Write a program to display the Fibonacci series using recursion.
+
+\subsection*{Algorithm}
+\begin{enumerate}
+    \item Base case: If n == 0, return 0. If n == 1, return 1.
+    \item Recursive case: Return fib(n-1) + fib(n-2).
+\end{enumerate}
+
+\subsection*{Source Code (28.cpp)}
+\begin{lstlisting}[style=cppstyle]
+#include <iostream>
+using namespace std;
+
+int fib(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+    int n;
+    cout << "Enter number of terms: ";
+    cin >> n;
+
+    cout << "Fibonacci Series: ";
+    for (int i = 0; i < n; i++)
+        cout << fib(i) << " ";
+    cout << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Sample Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % g++ 28.cpp -o 28
+krg@krgs-Mac shell % ./28
+Enter number of terms: 10
+Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 
+\end{lstlisting}
+
+\end{document}
