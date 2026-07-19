@@ -12,7 +12,7 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, decorations.pathmorphing, positioning, calc}
+\usetikzlibrary{shapes.geometric, decorations.pathmorphing}
 \usepackage{eso-pic}
 \usepackage{transparent}
 
@@ -45,13 +45,6 @@
 \definecolor{stringcolor}{rgb}{0.58,0,0.82}
 \definecolor{commentcolor}{rgb}{0,0.5,0}
 \definecolor{keywordcolor}{rgb}{0,0,0.7}
-
-% Modern color palette
-\definecolor{primary}{HTML}{1a365d}
-\definecolor{accent}{HTML}{2b6cb0}
-\definecolor{highlight}{HTML}{3182ce}
-\definecolor{lightbg}{HTML}{f7fafc}
-\definecolor{bordercolor}{HTML}{e2e8f0}
 
 \lstdefinestyle{bashstyle}{
     language=bash,
@@ -110,68 +103,78 @@
 \thispagestyle{empty}
 
 % ============================================================
-% FRONT PAGE - CLEAN MODERN DESIGN
+% FRONT PAGE - CLEAN BLACK & WHITE
 % ============================================================
 \AddToShipoutPictureBG*{%
     \begin{tikzpicture}[remember picture, overlay]
-        % Top color bar
-        \fill[primary] (current page.north west) rectangle ([yshift=-4cm]current page.north east);
-        % Bottom color bar
-        \fill[primary] (current page.south west) rectangle ([yshift=4cm]current page.south east);
-        % Left vertical accent
-        \fill[highlight] ([xshift=0cm]current page.north west) rectangle ([xshift=0.4cm]current page.south west);
+        % Top decorative bar
+        \fill[black!85] (current page.north west) rectangle ([yshift=-2.5cm]current page.north east);
+        % Bottom decorative bar
+        \fill[black!85] (current page.south west) rectangle ([yshift=2.5cm]current page.south east);
+        % Left accent stripe
+        \fill[black!20] ([xshift=0cm]current page.west) rectangle ([xshift=0.3cm]current page.south west);
+        % Right accent stripe
+        \fill[black!20] ([xshift=-0.3cm]current page.east) rectangle (current page.south east);
     \end{tikzpicture}%
 }
 
-\vspace*{1.5cm}
+\vspace*{0.8cm}
 
 \begin{center}
 % Logo
 \includegraphics[width=3.5cm]{logo.png}
-\vspace{0.5cm}
+\vspace{0.4cm}
 
 % College Name
-{\fontsize{26}{30}\selectfont \textbf{\textcolor{white}{GOUR MAHAVIDYALAYA}}}
+{\fontfamily{cmr}\fontsize{22}{26}\selectfont \textbf{\textcolor{black!85}{GOUR MAHAVIDYALAYA}}}
 \vspace{0.1cm}
 
-{\fontsize{11}{13}\selectfont \textcolor{white!70}{(Affiliated to Vidyasagar University)}}
-\vspace{1cm}
-
-% Thin divider
-{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
-\vspace{0.8cm}
-
-% Assignment Title
-{\fontsize{28}{34}\selectfont \textbf{\textcolor{white}{Shell Scripting Lab Assignment}}}
-\vspace{0.15cm}
-
-{\fontsize{14}{17}\selectfont \textbf{\textcolor{white!70}{DC-MJ-403: Operating System Lab}}}
-\vspace{1cm}
-
-% Thin divider
-{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
-\vspace{0.8cm}
-
-% Student Details
-{\fontsize{12}{14}\selectfont \textcolor{white!80}{
-\begin{tabular}{rl}
-\textbf{Name}     & : \textbf{KISHAN RANA GHOSH} \\[6pt]
-\textbf{Roll No.} & : \textbf{121-1115-2372-24} \\[6pt]
-\textbf{Semester} & : \textbf{4th Semester} \\[6pt]
-\textbf{Stream}   & : \textbf{B.Sc. Computer Science} \\[6pt]
-\textbf{Date}     & : \textbf{19/07/2026}
-\end{tabular}
-}}
-\vspace{0.8cm}
-
-% Thin divider
-{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
+{\fontfamily{cmr}\fontsize{11}{13}\selectfont \textcolor{black!50}{(Affiliated to Vidyasagar University)}}
 \vspace{0.6cm}
 
-{\large \textit{\textcolor{white!60}{Submitted to the Department of Computer Science}}}
+% Decorative line
+{\color{black!30}\rule{0.4\textwidth}{0.5pt}}
+\vspace{0.6cm}
+
+% Assignment Title
+{\fontfamily{cmr}\fontsize{22}{26}\selectfont \textbf{\textcolor{black!85}{Shell Scripting Lab Assignment}}}
+\vspace{0.15cm}
+
+{\fontfamily{cmr}\fontsize{13}{16}\selectfont \textbf{\textcolor{black!60}{DC-MJ-403: Operating System Lab}}}
+\vspace{0.6cm}
+
+% Decorative line
+{\color{black!30}\rule{0.6\textwidth}{0.5pt}}
+\vspace{0.6cm}
+
+% Student Details in a box
+\colorbox{black!5}{%
+\begin{minipage}{0.65\textwidth}
+\centering
+\vspace{0.3cm}
+{\fontfamily{cmr}
+\begin{tabular}{rl}
+\large \textbf{Name}          & \large : \textbf{KISHAN RANA GHOSH} \\[8pt]
+\large \textbf{Roll No.}      & \large : \textbf{121-1115-2372-24} \\[8pt]
+\large \textbf{Semester}      & \large : \textbf{4th Semester} \\[8pt]
+\large \textbf{Stream}        & \large : \textbf{B.Sc. Computer Science} \\[8pt]
+\large \textbf{Date}          & \large : \textbf{19/07/2026} \\
+\end{tabular}
+}
+\vspace{0.3cm}
+\end{minipage}%
+}
+
+\vspace{0.6cm}
+
+% Decorative line
+{\color{black!30}\rule{0.4\textwidth}{0.5pt}}
+\vspace{0.4cm}
+
+{\fontfamily{cmr}\large \textit{Submitted to the Department of Computer Science}}
 \vspace{0.2cm}
 
-{\small \textcolor{white!30}{--- \textbullet{} \textbullet{} \textbullet{} ---}}
+{\fontfamily{cmr}\small \textcolor{black!40}{--- \textbullet{} \textbullet{} \textbullet{} ---}}
 \end{center}
 
 
@@ -1183,3 +1186,4 @@ Enter the file name: data.txt
 Backup created: data.txt_20260719_231500
 \end{lstlisting}
 
+\end{document}
