@@ -1,0 +1,1185 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{lastpage}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, decorations.pathmorphing, positioning, calc}
+\usepackage{eso-pic}
+\usepackage{transparent}
+
+
+% Page geometry
+\geometry{
+    a4paper,
+    margin=0.5in,
+    top=0.5in,
+    bottom=0.5in,
+    headheight=14pt,
+    headsep=8pt,
+    footskip=16pt
+}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{DC-MJ-403: Operating System Lab Assignment}
+\fancyhead[R]{19/07/2026}
+\fancyfoot[C]{\thepage/\pageref{LastPage}}
+
+% Compact section titles
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\subsection}{0pt}{2pt}{0pt}
+
+% Code listing style
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\definecolor{codeframe}{rgb}{0.8,0.8,0.8}
+\definecolor{stringcolor}{rgb}{0.58,0,0.82}
+\definecolor{commentcolor}{rgb}{0,0.5,0}
+\definecolor{keywordcolor}{rgb}{0,0,0.7}
+
+% Modern color palette
+\definecolor{primary}{HTML}{1a365d}
+\definecolor{accent}{HTML}{2b6cb0}
+\definecolor{highlight}{HTML}{3182ce}
+\definecolor{lightbg}{HTML}{f7fafc}
+\definecolor{bordercolor}{HTML}{e2e8f0}
+
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\normalsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    commentstyle=\color{commentcolor},
+    extendedchars=true,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{codeframe},
+    keepspaces=true,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    numbers=left,
+    numbersep=3pt,
+    numberstyle=\tiny\color{gray},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stepnumber=1,
+    stringstyle=\color{stringcolor},
+    tabsize=2,
+    xleftmargin=4pt,
+    framexleftmargin=4pt
+}
+
+\lstdefinestyle{outputstyle}{
+    basicstyle=\ttfamily\normalsize,
+    backgroundcolor=\color{black!5},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{gray!50},
+    breaklines=true,
+    numbers=none,
+    xleftmargin=4pt,
+    framexleftmargin=4pt
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\setlength{\columnsep}{10pt}
+\setlength{\columnseprule}{0.4pt}
+
+% Fix first page header/footer
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{DC-MJ-403: Operating System Lab Assignment}
+    \fancyhead[R]{19/07/2026}
+    \fancyfoot[C]{\thepage/\pageref{LastPage}}
+}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\thispagestyle{empty}
+
+% ============================================================
+% FRONT PAGE - CLEAN MODERN DESIGN
+% ============================================================
+\AddToShipoutPictureBG*{%
+    \begin{tikzpicture}[remember picture, overlay]
+        % Top color bar
+        \fill[primary] (current page.north west) rectangle ([yshift=-4cm]current page.north east);
+        % Bottom color bar
+        \fill[primary] (current page.south west) rectangle ([yshift=4cm]current page.south east);
+        % Left vertical accent
+        \fill[highlight] ([xshift=0cm]current page.north west) rectangle ([xshift=0.4cm]current page.south west);
+    \end{tikzpicture}%
+}
+
+\vspace*{1.5cm}
+
+\begin{center}
+% Logo
+\includegraphics[width=3.5cm]{logo.png}
+\vspace{0.5cm}
+
+% College Name
+{\fontsize{26}{30}\selectfont \textbf{\textcolor{white}{GOUR MAHAVIDYALAYA}}}
+\vspace{0.1cm}
+
+{\fontsize{11}{13}\selectfont \textcolor{white!70}{(Affiliated to Vidyasagar University)}}
+\vspace{1cm}
+
+% Thin divider
+{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
+\vspace{0.8cm}
+
+% Assignment Title
+{\fontsize{28}{34}\selectfont \textbf{\textcolor{white}{Shell Scripting Lab Assignment}}}
+\vspace{0.15cm}
+
+{\fontsize{14}{17}\selectfont \textbf{\textcolor{white!70}{DC-MJ-403: Operating System Lab}}}
+\vspace{1cm}
+
+% Thin divider
+{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
+\vspace{0.8cm}
+
+% Student Details
+{\fontsize{12}{14}\selectfont \textcolor{white!80}{
+\begin{tabular}{rl}
+\textbf{Name}     & : \textbf{KISHAN RANA GHOSH} \\[6pt]
+\textbf{Roll No.} & : \textbf{121-1115-2372-24} \\[6pt]
+\textbf{Semester} & : \textbf{4th Semester} \\[6pt]
+\textbf{Stream}   & : \textbf{B.Sc. Computer Science} \\[6pt]
+\textbf{Date}     & : \textbf{19/07/2026}
+\end{tabular}
+}}
+\vspace{0.8cm}
+
+% Thin divider
+{\color{white!40}\rule{0.3\textwidth}{0.5pt}}
+\vspace{0.6cm}
+
+{\large \textit{\textcolor{white!60}{Submitted to the Department of Computer Science}}}
+\vspace{0.2cm}
+
+{\small \textcolor{white!30}{--- \textbullet{} \textbullet{} \textbullet{} ---}}
+\end{center}
+
+
+\newpage
+\thispagestyle{empty}
+\vspace*{1cm}
+\begin{center}
+{\fontsize{26}{32}\selectfont \textbf{\textcolor{black!80}{Index}}}
+\vspace{0.2cm}
+{\color{black!30}\hrule height 1.5pt width 0.6\textwidth}
+\vspace{0.6cm}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{>{\centering\arraybackslash}m{1cm} >{\raggedright\arraybackslash}m{7.5cm} >{\centering\arraybackslash}m{1.5cm}}
+\rowcolor{black!85}
+{\color{white}\textbf{\large No.}} & {\color{white}\textbf{\large Topic Name}} & {\color{white}\textbf{\large Page}} \\
+\rowcolor{white}
+1  & Prime Numbers Between 2 and n                     & 1 \\
+\rowcolor{black!5}
+2  & Multiplication Table                              & 1 \\
+\rowcolor{white}
+3  & Sum of Digits                                     & 2 \\
+\rowcolor{black!5}
+4  & Armstrong Number Check                            & 2 \\
+\rowcolor{white}
+5  & Pyramid Pattern                                   & 3 \\
+\rowcolor{black!5}
+6  & Palindrome String Check                           & 3 \\
+\rowcolor{white}
+7  & Fibonacci Series                                  & 4 \\
+\rowcolor{black!5}
+8  & Reverse a Number                                  & 4 \\
+\rowcolor{white}
+9  & Minimum of Three Numbers                          & 5 \\
+\rowcolor{black!5}
+10 & Print String to File                              & 5 \\
+\rowcolor{white}
+11 & Sum and Average Until Sentinel                    & 6 \\
+\rowcolor{black!5}
+12 & Binary to Decimal Conversion                      & 6 \\
+\rowcolor{white}
+13 & Decimal to Binary Conversion                      & 7 \\
+\rowcolor{black!5}
+14 & Calculator Using Case                             & 7 \\
+\rowcolor{white}
+15 & Power Calculation                                 & 8 \\
+\rowcolor{black!5}
+16 & Factorial Using Recursion                         & 8 \\
+\rowcolor{white}
+17 & Compare and Delete Duplicate Files                & 9 \\
+\rowcolor{black!5}
+18 & Rename Files to Uppercase                         & 9 \\
+\rowcolor{white}
+19 & Search Word in File                               & 10 \\
+\rowcolor{black!5}
+20 & Day of Week Message                               & 10 \\
+\rowcolor{white}
+21 & Count Vowels in a String                          & 11 \\
+\rowcolor{black!5}
+22 & Common Files in Two Directories                   & 11 \\
+\rowcolor{white}
+23 & Split Sentence into Words                         & 12 \\
+\rowcolor{black!5}
+24 & Delete Empty Files in Directory                   & 12 \\
+\rowcolor{white}
+25 & File Backup with Timestamp                        & 13 \\
+\rowcolor{black!85}
+\multicolumn{3}{|c|}{\color{white}\textbf{Total Programs: 25}} \\
+\end{tabular}}
+\end{center}
+
+\vfill
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ============================================================
+% PAGE 1: Programs 1 & 2
+% ============================================================
+\begin{multicols}{2}
+
+\section{Prime Numbers (01.sh)}
+\subsection*{Question}
+Write a shell script to print all prime numbers between 2 and a user-specified number using a for loop.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 01.sh; 19/07/2026
+#!/bin/bash
+read -p "Enter a Number: " n
+if ((n < 0)); then 
+    echo "Invalid number"; exit 0
+fi    
+echo "Prime numbers between 2 and $n are: "
+for ((i=2; i<=n; i++)); do
+    prime=1
+    for ((j=2; j*j<=i; j++)); do
+        if (( i % j == 0 )); then
+            prime=0; break
+        fi
+    done
+    if (( prime == 1 )); then
+        echo -n "$i "
+    fi
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./01.sh
+Enter a Number: 20
+2 3 5 7 11 13 17 19 
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./01.sh
+Enter a Number: 10
+2 3 5 7 
+\end{lstlisting}
+
+\columnbreak
+
+\section{Multiplication Table (02.sh)}
+\subsection*{Question}
+Write a shell script that accepts a number from the command line and displays its multiplication table using a while loop.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 02.sh; 19/07/2026
+#!/bin/bash
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <number>"; exit 1
+fi
+if [ $1 -le 0 ]; then 
+    echo "Invalid Number."; exit 0
+fi  
+num=$1; i=1
+echo "Multiplication Table of $num"
+while [ $i -le 10 ]; do
+    echo "$num x $i = $((num * i))"
+    i=$((i + 1))
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./02.sh 7
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 2: Programs 3 & 4
+% ============================================================
+\begin{multicols}{2}
+
+\section{Sum of Digits (03.sh)}
+\subsection*{Question}
+Write a shell script to find the sum of digits of a number using an until loop.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 03.sh; 19/07/2026
+#!/bin/bash
+read -p "Enter a number: " num
+if [ $num -lt 0 ]; then
+    echo "Negative number: $num"
+    newNum=$((num - num * 2)); sum=0
+    until [ $newNum -eq 0 ]; do
+        digit=$((newNum % 10))
+        sum=$((sum + digit))
+        newNum=$((newNum / 10))
+    done
+    echo "Sum without sign = $sum"
+    echo "Sum with sign = -$sum"
+    exit 0
+fi
+sum=0
+until [ $num -eq 0 ]; do
+    digit=$((num % 10))
+    sum=$((sum + digit))
+    num=$((num / 10))
+done
+echo "Sum of digits = $sum"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./03.sh
+Enter a number: 1234
+Sum of digits = 10
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./03.sh
+Enter a number: -567
+Sum without sign = 18
+Sum with sign = -18
+\end{lstlisting}
+
+\columnbreak
+
+\section{Armstrong Number (04.sh)}
+\subsection*{Question}
+Write a shell script to check whether a given number is Armstrong or not, and display a message using a case statement.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 04.sh; 19/07/2026
+#!/bin/bash
+read -p "Enter a number: " num
+original=$num; sum=0
+while [ $num -gt 0 ]; do
+    digit=$((num % 10))
+    sum=$((sum + digit * digit * digit))
+    num=$((num / 10))
+done
+case $sum in
+    $original) echo "$original is an Armstrong number.";;
+    *) echo "$original is not an Armstrong number.";;
+esac
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./04.sh
+Enter a number: 153
+153 is an Armstrong number.
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./04.sh
+Enter a number: 123
+123 is not an Armstrong number.
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 3: Programs 5 & 6
+% ============================================================
+\begin{multicols}{2}
+
+\section{Pyramid Pattern (05.sh)}
+\subsection*{Question}
+Write a script to print a pyramid of a symbol entered by the user, using a for loop and nested while loop.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 05.sh; 19/07/2026
+#!/bin/bash
+echo "Enter a symbol:"; read sym
+echo "Enter the number of rows:"; read rows
+for ((i=1; i<=rows; i++)); do
+    j=1
+    while [ $j -le $((rows - i)) ]; do
+        echo -n " "; j=$((j + 1))
+    done
+    k=1
+    while [ $k -le $((2 * i - 1)) ]; do
+        echo -n "$sym"; k=$((k + 1))
+    done
+    echo
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./05.sh
+Enter a symbol: *
+Enter the number of rows: 5
+    *
+   ***
+  *****
+ *******
+*********
+\end{lstlisting}
+
+\columnbreak
+
+\section{Palindrome String (06.sh)}
+\subsection*{Question}
+Write a shell script that accepts a string as a command-line argument and checks whether it is a palindrome, ignoring case sensitivity.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 06.sh; 19/07/2026
+#!/bin/bash
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <string>"; exit 1
+fi
+str=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+rev=""; len=${#str}
+for ((i=len-1; i>=0; i--)); do
+    rev="$rev${str:$i:1}"
+done
+if [ "$str" = "$rev" ]; then
+    echo "\"$1\" is a palindrome."
+else
+    echo "\"$1\" is not a palindrome."
+fi
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./06.sh racecar
+"racecar" is a palindrome.
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./06.sh hello
+"hello" is not a palindrome.
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 4: Programs 7 & 8
+% ============================================================
+\begin{multicols}{2}
+
+\section{Fibonacci Series (07.sh)}
+\subsection*{Question}
+Write a shell script to print the Fibonacci series up to n terms using a while loop.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 07.sh; 19/07/2026
+#!/bin/bash
+read -p "Enter the number of terms: " n
+a=0; b=1; count=1
+echo "Fibonacci Series: "
+while [ $count -le $n ]; do
+    echo -n "$a "
+    c=$((a + b)); a=$b; b=$c
+    count=$((count + 1))
+done
+echo
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./07.sh
+Enter the number of terms: 10
+Fibonacci Series: 
+0 1 1 2 3 5 8 13 21 34 
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./07.sh
+Enter the number of terms: 5
+Fibonacci Series: 
+0 1 1 2 3 
+\end{lstlisting}
+
+\columnbreak
+
+\section{Reverse a Number (08.sh)}
+\subsection*{Question}
+Write a shell script to reverse a number.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 08.sh; 19/07/2026
+#!/bin/bash
+read "Enter a number:" num
+rev=0
+while [ $num -ne 0 ]; do
+    rem=$((num % 10))
+    rev=$((rev * 10 + rem))
+    num=$((num / 10))
+done
+echo "Reversed number: $rev"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./08.sh
+Enter a number: 12345
+Reversed number: 54321
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./08.sh
+Enter a number: 1002
+Reversed number: 2001
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 5: Programs 9 & 10
+% ============================================================
+\begin{multicols}{2}
+
+\section{Minimum of Three (09.sh)}
+\subsection*{Question}
+Write a shell script that accepts three numbers via command-line arguments and finds the minimum using a case statement.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 09.sh; 19/07/2026
+#!/bin/bash
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 num1 num2 num3"; exit 1
+fi
+a=$1; b=$2; c=$3
+if [ $a -le $b ] && [ $a -le $c ]; then min=$a
+elif [ $b -le $a ] && [ $b -le $c ]; then min=$b
+else min=$c
+fi
+case $min in
+    $a) echo "Minimum is: $a";;
+    $b) echo "Minimum is: $b";;
+    $c) echo "Minimum is: $c";;
+esac
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./09.sh 45 12 78
+Minimum is: 12
+\end{lstlisting}
+
+\columnbreak
+
+\section{Print String to File (10.sh)}
+\subsection*{Question}
+Write a shell script that prompts the user to input a string and a number, then prints the string that many times using a for loop and stores it in a file.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 10.sh; 19/07/2026
+#!/bin/bash
+echo "Enter a string:"; read str
+echo "Enter number of times:"; read n
+file="output.txt"
+> "$file"
+for ((i=1; i<=n; i++)); do
+    echo "$str"
+    echo "$str" >> "$file"
+done
+echo "Stored in $file"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./10.sh
+Enter a string: Hello World
+Enter number of times: 3
+Hello World
+Hello World
+Hello World
+Stored in output.txt
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 6: Programs 11 & 12
+% ============================================================
+\begin{multicols}{2}
+
+\section{Sum \& Average (11.sh)}
+\subsection*{Question}
+Write a shell script that keeps asking for numbers until the user enters -1, then prints the sum and average of all numbers entered.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 11.sh; 19/07/2026
+#!/bin/bash
+sum=0; count=0; num=0
+echo "Enter numbers (-1 to stop):"
+until [ $num -eq -1 ]; do
+    read num
+    if [ $num -ne -1 ]; then
+        sum=$((sum + num))
+        count=$((count + 1))
+    fi
+done
+echo "Sum = $sum"
+if [ $count -gt 0 ]; then
+    avg=$((sum / count))
+    echo "Average = $avg"
+else
+    echo "No numbers entered."
+fi
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./11.sh
+Enter numbers (-1 to stop):
+10
+20
+30
+-1
+Sum = 60
+Average = 20
+\end{lstlisting}
+
+\columnbreak
+
+\section{Binary to Decimal (12.sh)}
+\subsection*{Question}
+Write a shell script to convert a binary number (entered via command line) to decimal.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 12.sh; 19/07/2026
+#!/bin/bash
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <binary>"; exit 1
+fi
+bin=$1; dec=0; base=1
+while [ $bin -gt 0 ]; do
+    rem=$((bin % 10))
+    if [ $rem -ne 0 ] && [ $rem -ne 1 ]; then
+        echo "Invalid binary!"; exit 1
+    fi
+    dec=$((dec + rem * base))
+    base=$((base * 2)); bin=$((bin / 10))
+done
+echo "Decimal = $dec"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./12.sh 1101
+Decimal = 13
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./12.sh 1010
+Decimal = 10
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 7: Programs 13 & 14
+% ============================================================
+\begin{multicols}{2}
+
+\section{Decimal to Binary (13.sh)}
+\subsection*{Question}
+Write a shell script to convert a decimal number to binary using a loop and expr.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 13.sh; 19/07/2026
+#!/bin/bash
+echo "Enter a decimal number:"; read num
+binary=""
+if [ $num -eq 0 ]; then
+    echo "Binary = 0"; exit 0
+fi
+while [ $num -gt 0 ]; do
+    rem=$(( num % 2 ))
+    binary="$rem$binary"
+    num=$(( num / 2))
+done
+echo "Binary = $binary"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./13.sh
+Enter a decimal number: 13
+Binary = 1101
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./13.sh
+Enter a decimal number: 25
+Binary = 11001
+\end{lstlisting}
+
+\columnbreak
+
+\section{Calculator (14.sh)}
+\subsection*{Question}
+Write a shell script to implement a menu-driven calculator using case statement, allowing the user to choose operation (add, subtract, multiply, divide).
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 14.sh; 19/07/2026
+#!/bin/bash
+echo "Enter first number:"; read num1
+echo "Enter second number:"; read num2
+echo "1. Add  2. Sub  3. Mul  4. Div"
+echo "Enter choice (1-4):"; read choice
+case $choice in
+    1) result=$((num1 + num2)); echo "Result = $result";;
+    2) result=$((num1 - num2)); echo "Result = $result";;
+    3) result=$((num1 * num2)); echo "Result = $result";;
+    4) if [ $num2 -eq 0 ]; then
+           echo "Division by zero not allowed."
+       else result=$((num1 / num2)); echo "Result = $result"; fi;;
+    *) echo "Invalid choice!";;
+esac
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./14.sh
+Enter first number: 15
+Enter second number: 4
+1. Add  2. Sub  3. Mul  4. Div
+Enter choice (1-4): 3
+Result = 60
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./14.sh
+Enter first number: 20
+Enter second number: 5
+1. Add  2. Sub  3. Mul  4. Div
+Enter choice (1-4): 1
+Result = 25
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 8: Programs 15 & 16
+% ============================================================
+\begin{multicols}{2}
+
+\section{Power Calculation (15.sh)}
+\subsection*{Question}
+Write a shell script to compute the power of a number using a loop (no bc or built-in power operator).
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 15.sh; 19/07/2026
+#!/bin/bash
+echo "Enter base:"; read base
+echo "Enter exponent:"; read exp
+result=1; i=1
+while [ $i -le $exp ]; do
+    result=$((result * base))
+    i=$((i + 1))
+done
+echo "$base^$exp = $result"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./15.sh
+Enter base: 5
+Enter exponent: 4
+5^4 = 625
+\end{lstlisting}
+
+\columnbreak
+
+\section{Factorial (Recursive) (16.sh)}
+\subsection*{Question}
+Write a shell script to find the factorial using recursion (with function).
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 16.sh; 19/07/2026
+#!/bin/bash
+factorial() {
+    n=$1
+    if [ $n -le 1 ]; then echo 1
+    else
+        prev=$(factorial $((n - 1)))
+        echo $((n * prev))
+    fi
+}
+echo "Enter a number:"; read num
+result=$(factorial $num)
+echo "Factorial of $num = $result"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./16.sh
+Enter a number: 6
+Factorial of 6 = 720
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./16.sh
+Enter a number: 5
+Factorial of 5 = 120
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 9: Programs 17 & 18
+% ============================================================
+\begin{multicols}{2}
+
+\section{Compare \& Delete Files (17.sh)}
+\subsection*{Question}
+Write a shell script to compare the contents of two files and, if they are identical, ask the user whether to delete the second one using a case.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 17.sh; 19/07/2026
+#!/bin/bash
+echo "Enter first file:"; read file1
+echo "Enter second file:"; read file2
+if diff "$file1" "$file2" > /dev/null 2> err.log; then
+    echo "Files are identical."
+    echo "Delete $file2? (y/n)"; read choice
+    case $choice in
+        y|Y) rm "$file2"; echo "$file2 deleted.";;
+        n|N) echo "Not deleted.";;
+        *) echo "Invalid choice.";;
+    esac
+else
+    echo "Files are different."
+fi
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./17.sh
+Enter first file: a.txt
+Enter second file: b.txt
+Files are identical.
+Delete b.txt? (y/n) y
+b.txt deleted.
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./17.sh
+Enter first file: a.txt
+Enter second file: c.txt
+Files are different.
+\end{lstlisting}
+
+\columnbreak
+
+\section{Rename to Uppercase (18.sh)}
+\subsection*{Question}
+Write a script that takes multiple filenames as arguments, checks if they exist in the current directory, and renames them to UPPERCASE if not already existing.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 18.sh; 19/07/2026
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 file1 file2 ..."; exit 1
+fi
+for file in "$@"; do
+    if [ -f "$file" ]; then
+        upper=$(echo "$file" | tr '[:lower:]' '[:upper:]')
+        if [ -e "$upper" ]; then
+            echo "Cannot rename $file (target exists)"
+        else
+            mv "$file" "$upper"
+            echo "$file renamed to $upper"
+        fi
+    else
+        echo "$file does not exist"
+    fi
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./18.sh test.txt hello.sh
+test.txt renamed to TEST.TXT
+hello.sh renamed to HELLO.SH
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 10: Programs 19 & 20
+% ============================================================
+\begin{multicols}{2}
+
+\section{Search Word in File (19.sh)}
+\subsection*{Question}
+Write a shell script to print all the lines from a file that contain a specific word (input by user).
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 19.sh; 19/07/2026
+#!/bin/bash
+echo "Enter file name:"; read file
+if [ ! -f "$file" ]; then
+    echo "File does not exist."; exit 1
+fi
+echo "Enter word to search:"; read word
+echo "Lines containing '$word':"
+grep "$word" "$file"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./19.sh
+Enter file name: test.txt
+Enter word to search: hello
+Lines containing 'hello':
+hello world
+hello everyone
+\end{lstlisting}
+
+\columnbreak
+
+\section{Day of Week (20.sh)}
+\subsection*{Question}
+Write a shell script using a case statement to display the current day of the week and a custom message for each day.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 20.sh; 19/07/2026
+#!/bin/bash
+day=$(date +%A)
+echo "Today is: $day"
+case $day in
+    Monday)   echo "Start with energy!";;
+    Tuesday)  echo "Keep momentum going!";;
+    Wednesday)echo "Halfway through!";;
+    Thursday) echo "Weekend is near!";;
+    Friday)   echo "Finish strong!";;
+    Saturday) echo "Enjoy weekend!";;
+    Sunday)   echo "Work on startup";;
+    *)        echo "Have a great day!";;
+esac
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./20.sh
+Today is: Saturday
+Enjoy weekend!
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 11: Programs 21 & 22
+% ============================================================
+\begin{multicols}{2}
+
+\section{Count Vowels (21.sh)}
+\subsection*{Question}
+Write a shell script to count the number of vowels in a string input by the user.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 21.sh; 19/07/2026
+#!/bin/bash
+echo "Enter a string:"; read str
+count=0
+for ((i=0; i<${#str}; i++)); do
+    ch=${str:$i:1}
+    case $ch in
+        [aeiouAEIOU]) count=$((count + 1));;
+    esac
+done
+echo "Number of vowels = $count"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./21.sh
+Enter a string: Hello World
+Number of vowels = 3
+\end{lstlisting}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./21.sh
+Enter a string: AEIOU
+Number of vowels = 5
+\end{lstlisting}
+
+\columnbreak
+
+\section{Common Files (22.sh)}
+\subsection*{Question}
+Write a shell script that takes two directory names and reports which files are common in both directories.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 22.sh; 19/07/2026
+#!/bin/bash
+read -p "Enter first directory: " dir1
+read -p "Enter second directory: " dir2
+if [ ! -d "$dir1" ] || [ ! -d "$dir2" ]; then
+    echo "One or both directories don't exist."; exit 1
+fi
+echo "Common files:"
+for file in "$dir1"/*; do
+    fname=$(basename "$file")
+    if [ -f "$dir2/$fname" ]; then
+        echo "$fname"
+    fi
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./22.sh
+Enter first directory: dirA
+Enter second directory: dirB
+Common files:
+notes.txt
+data.csv
+\end{lstlisting}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+% PAGE 12: Programs 23 & 24
+% ============================================================
+\begin{multicols}{2}
+
+\section{Split Sentence (23.sh)}
+\subsection*{Question}
+Write a shell script that accepts a sentence and prints each word on a separate line.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 23.sh; 19/07/2026
+#!/bin/bash
+echo "Enter a sentence:"; read sentence
+for word in $sentence; do
+    echo "$word"
+done
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./23.sh
+Enter a sentence: Shell scripting is fun
+Shell
+scripting
+is
+fun
+\end{lstlisting}
+
+\columnbreak
+
+\section{Delete Empty Files (24.sh)}
+\subsection*{Question}
+Write a shell script to find and delete all empty files in a directory entered by the user.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 24.sh; 19/07/2026
+#!/bin/bash
+echo "Enter directory name:"; read dir
+if [ ! -d "$dir" ]; then
+    echo "Directory does not exist."; exit 1
+fi
+echo "Empty files found:"
+find "$dir" -type f -empty -print
+find "$dir" -type f -empty -delete
+echo "All empty files deleted."
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./24.sh
+Enter directory name: mydir
+Empty files found:
+mydir/empty1.txt
+mydir/empty2.txt
+All empty files deleted.
+\end{lstlisting}
+
+\end{multicols}
+
+% ============================================================
+% PAGE 13: Program 25
+% ============================================================
+\section{File Backup with Timestamp (25.sh)}
+\subsection*{Question}
+Write a shell script to create a backup of a file entered by the user by appending the current date and time to its name.
+
+\subsection*{Code}
+\begin{lstlisting}[style=bashstyle]
+#KISHAN RANA GHOSH; 25.sh; 19/07/2026
+#!/bin/bash
+echo "Enter the file name:"; read file
+if [ ! -f "$file" ]; then
+    echo "File does not exist."; exit 1
+fi
+timestamp=$(date +"%Y%m%d_%H%M%S")
+backup_file="${file}_$timestamp"
+cp "$file" "$backup_file"
+echo "Backup created: $backup_file"
+\end{lstlisting}
+
+\subsection*{Output}
+\begin{lstlisting}[style=outputstyle]
+krg@krgs-Mac shell % ./25.sh
+Enter the file name: data.txt
+Backup created: data.txt_20260719_231500
+\end{lstlisting}
+

@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 01.sh; 19/07/2026
 #!/bin/bash
 
 read -p "Enter a Number: " n
@@ -28,4 +29,3 @@ do
     fi
 done
 
-echo

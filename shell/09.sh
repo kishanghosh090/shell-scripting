@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 09.sh; 19/07/2026
 #!/bin/bash
 
 # Check if three arguments are provided

@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 22.sh; 19/07/2026
 #!/bin/bash
 
 read -p "Enter first directory:" dir1

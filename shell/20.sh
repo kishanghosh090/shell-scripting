@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 20.sh; 19/07/2026
 #!/bin/bash
 
 day=$(date +%A)

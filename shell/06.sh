@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 06.sh; 19/07/2026
 #!/bin/bash
 
 # Check if an argument is provided

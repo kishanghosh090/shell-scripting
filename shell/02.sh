@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 02.sh; 19/07/2026
 #!/bin/bash
 
 if [ $# -ne 1 ]

@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 12.sh; 19/07/2026
 #!/bin/bash
 
 # Check if a binary number is provided

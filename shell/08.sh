@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 08.sh; 19/07/2026
 #!/bin/bash
 
 read "Enter a number:" num

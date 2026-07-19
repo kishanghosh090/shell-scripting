@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 15.sh; 19/07/2026
 #!/bin/bash
 
 echo "Enter the base number:"

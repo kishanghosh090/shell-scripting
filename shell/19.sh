@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 19.sh; 19/07/2026
 #!/bin/bash
 
 echo "Enter the file name:"

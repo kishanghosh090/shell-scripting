@@ -1,3 +1,4 @@
+#KISHAN RANA GHOSH; 07.sh; 19/07/2026
 #!/bin/bash
 
 read -p "Enter the number of terms: " n
