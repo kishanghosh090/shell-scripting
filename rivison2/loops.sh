@@ -1,19 +1,35 @@
-chai="alychi,ginger,masala"
-IFS=',' read -r -a tea <<< "$chai"
+#!/bin/bash
 
-echo ${tea[*]}
+# chai="alychi,ginger,masala"
+# IFS=',' read -r -a tea <<< "$chai"
 
-for i in "${tea[*]}"
+# echo ${tea[*]}
+
+# for i in "${tea[*]}"
+# do
+#     echo $i
+# done    
+
+
+# arr=(alychi 90 3 milk water alychi somesuger)
+# i=0
+# while [[ i -lt ${#arr[*]} ]]
+# do
+#     echo "${arr[i]}"
+#     let i++
+# done
+# echo ${#arr[*]}
+
+
+
+
+s1="kishan"
+s2=""
+
+for (( i=0;i<${#s1};i++ ))
 do
-    echo $i
-done    
-
-
-arr=(alychi 90 3 milk water alychi somesuger)
-i=0
-while [[ i -lt ${#arr[*]} ]]
-do
-    echo "${arr[i]}"
-    let i++
+    idx=$(( ${#s1} - 1 - $i  ))
+    s2+=${s1:idx:1}
 done
-echo ${#arr[*]}
+
+echo $s2
