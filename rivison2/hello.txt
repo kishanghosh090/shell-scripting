@@ -1,5 +1,4 @@
-hello
-from
-kishan
-rana 
-ghosh
+zsh: command not found: revv
+zsh: command not found: revv
+zsh: command not found: revv
+zsh: command not found: revv
